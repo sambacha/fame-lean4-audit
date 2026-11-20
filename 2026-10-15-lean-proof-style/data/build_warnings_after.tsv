@@ -1,0 +1,6 @@
+file	line	col	kind	argument
+HandoffV3/FreerBridgeChecks.lean	123	5	unusedVar	h
+HandoffV3/FreerBridgeChecks.lean	149	34	unusedVar	k
+HandoffV3/FreerBridgeChecks.lean	153	43	unusedVar	k
+HandoffV3/FreerBridgeChecks.lean	196	29	unusedVar	e
+HandoffV3/FreerBridgeChecks.lean	208	15	unusedVar	k

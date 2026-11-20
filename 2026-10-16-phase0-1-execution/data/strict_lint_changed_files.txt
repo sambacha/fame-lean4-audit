@@ -1,0 +1,9 @@
+# lake env lean -DwarningAsError=true -Dlinter.flexible=true -Dlinter.style.multiGoal=true -Dlinter.style.show=true -Dlinter.unusedDecidableInType=true -Dlinter.unusedFintypeInType=true -Dlinter.unnecessarySimpa=true -Dlinter.style.longLine=true <file>
+# run on every Lean file changed by the Phase 0/1 execution, after the final edits (exit code per file)
+RequestProject/ASP/Phase4/ABI.lean rc=0 errors=0
+RequestProject/ASP/Phase7/Transitions.lean rc=0 errors=0
+RequestProject/ASP/Phase7/Frame.lean rc=0 errors=0
+RequestProject/StyleRefactorTests.lean rc=0 errors=0
+RequestProject/Util/ListFold.lean rc=0 errors=0
+RequestProject/Fame/Rotation/Machine.lean rc=0 errors=0
+RequestProject/Fame/Operator/Refinement.lean rc=1 errors=2 on the first run (linter.style.longLine at :8, a docstring quote, and :527, a `have` type); both lines wrapped; re-run: rc=0 errors=0

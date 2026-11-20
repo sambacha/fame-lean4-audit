@@ -1,0 +1,10 @@
+# Build-output rules for this directory. They repeat the root .gitignore ON PURPOSE.
+# The delivery step that hands this repository between sessions replaces the ROOT
+# .gitignore with a generic template and commits whatever is on disk; nested .gitignore
+# files survive it (B-0 root cause: docs/design/B0_REPOSITORY_STATE_ROOT_CAUSE_2026_10_12.md).
+# Do not delete this file because the root .gitignore "already has" these rules.
+# Gate: python3 scripts/check_repo_hygiene.py (probes every Python/npm/Foundry directory).
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store

@@ -1,0 +1,5 @@
+RequestProject/Fame/Testing/LMMTests.lean: 17 theorems at HEAD; 1 violation(s)
+  changed: lmm_mode_risk_accepted
+  before: : report.accepted = true
+  after:  : report.accepted = false
+rc=1

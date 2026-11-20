@@ -1,0 +1,73 @@
+{
+  "harness": "venue_falsification",
+  "engine": "services/venue-engine/src/engine.mjs",
+  "config": {
+    "feePerFill": 2,
+    "maxFee": 5,
+    "lmmAccount": 9,
+    "minSpread": 2
+  },
+  "seed": 20260923,
+  "traces": 20000,
+  "steps": 135371,
+  "determinismChecked": 20000,
+  "violations": {
+    "P9:crossed-book": {
+      "seed": 20260923,
+      "trace": 2,
+      "step": 6,
+      "events": [
+        {
+          "kind": "newOrder",
+          "order": {
+            "id": 100,
+            "acct": 1,
+            "side": "B",
+            "limit": 98,
+            "qty": 3,
+            "tif": "GTC"
+          }
+        },
+        {
+          "kind": "tick",
+          "dt": 3
+        },
+        {
+          "kind": "amend",
+          "id": 100,
+          "newQty": 3,
+          "newLimit": 96
+        },
+        {
+          "kind": "amend",
+          "id": 100,
+          "newQty": 0,
+          "newLimit": 97
+        },
+        {
+          "kind": "amend",
+          "id": 100,
+          "newQty": 4,
+          "newLimit": 96
+        },
+        {
+          "kind": "newOrder",
+          "order": {
+            "id": 101,
+            "acct": 0,
+            "side": "S",
+            "limit": 99,
+            "qty": 1,
+            "tif": "GTC"
+          }
+        },
+        {
+          "kind": "lmmQuote",
+          "bid": 99,
+          "ask": 101,
+          "size": 1
+        }
+      ]
+    }
+  }
+}

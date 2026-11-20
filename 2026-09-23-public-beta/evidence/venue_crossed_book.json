@@ -1,0 +1,71 @@
+{
+  "case": "amend-crosses-the-book",
+  "events": [
+    {
+      "kind": "newOrder",
+      "order": {
+        "id": 1,
+        "acct": 1,
+        "side": "S",
+        "limit": 100,
+        "qty": 5,
+        "tif": "GTC"
+      }
+    },
+    {
+      "kind": "newOrder",
+      "order": {
+        "id": 2,
+        "acct": 2,
+        "side": "B",
+        "limit": 98,
+        "qty": 5,
+        "tif": "GTC"
+      }
+    },
+    {
+      "kind": "amend",
+      "id": 2,
+      "newQty": 5,
+      "newLimit": 110
+    }
+  ],
+  "finalBook": [
+    {
+      "id": 1,
+      "acct": 1,
+      "side": "S",
+      "limit": 100,
+      "original": 5,
+      "remaining": 5,
+      "seqNo": 0
+    },
+    {
+      "id": 2,
+      "acct": 2,
+      "side": "B",
+      "limit": 110,
+      "original": 5,
+      "remaining": 5,
+      "seqNo": 2
+    }
+  ],
+  "fillsSoFar": 0,
+  "crossedPairs": [
+    {
+      "bidAcct": 2,
+      "bidLimit": 110,
+      "askAcct": 1,
+      "askLimit": 100
+    }
+  ]
+}
+{
+  "case": "third-party-harvests-the-crossed-spread",
+  "harvesterCash": 46,
+  "harvesterPosition": 0,
+  "feesPaidByHarvester": 4,
+  "makerACash": 500,
+  "makerBCash": -550,
+  "bookAfter": []
+}

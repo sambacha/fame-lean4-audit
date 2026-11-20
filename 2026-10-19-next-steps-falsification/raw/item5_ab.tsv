@@ -1,0 +1,10 @@
+# Item 5 A/B, round 2 (warm cache, old side then new side, one run per side, shared machine: indicative only).
+# Byte comparison after replacing the script path in diagnostics with a placeholder.
+key	site	outputs_compared	byte_identical	old_s	new_s	ratio
+detsim	DetSim/Audit.lean (2 sites)	stdout	yes	13.7	4.9	2.8
+h3	HandoffV3/Audit.lean	stdout	yes	78.3	27.1	2.9
+tcb	scripts/NativeDecideTcb.lean	stdout	yes	350.0	13.7	25.5
+prof	audit/2026-10-17-lean-profiling/tools/ProfEnv.lean	stdout + axioms.tsv, imports.tsv, used.tsv	yes	172.4	11.8	14.7
+dn	scripts/DeclarationNames.lean	stdout + DECL_NAMES_OUT (65955 lines)	yes	184.0	21.8	8.5
+ica	scripts/ICACensus.lean	stdout + docs/ica/ica_decl_census.tsv (39406 lines)	yes	185.2	18.0	10.3
+axmemo	scripts/AxiomAuditMemo.lean	axiom_audit rows (309)	yes	-	-	-

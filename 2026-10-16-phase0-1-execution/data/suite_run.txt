@@ -1,0 +1,10 @@
+style-refactor: 5 laws sampled at 200 cases each, 2 negative controls
+style-refactor law foldr max bounds the seed and every element: success (cases=200, seed=20261016)
+style-refactor law foldr max is the seed or an element: success (cases=200, seed=20261017)
+style-refactor law foldl max equals foldr max: success (cases=200, seed=20261018)
+style-refactor law foldr min bounds the seed and every element: success (cases=200, seed=20261019)
+style-refactor law the deposit gate is exactly its three guards: success (cases=200, seed=20261020)
+style-refactor control a fold that forgets its seed: falsified as required by [l := [], seed := 1, issue: 1 = 0 does not hold]
+style-refactor control a deposit gate without the ledger cap: falsified as required by [cap := 0, deposited := 1, amount := 3, moved := 3, issue: false = true does not hold]
+true
+'StyleRefactor.Tests.laws_hold' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,40 @@
+  List.map PTPvsStabilization.PaperTests.VectorPrefixDominationTests.toRealVec
+      (PTPvsStabilization.PaperTests.LevelBlindSpotTests.swapOrderQ t m c) =
+    PTPvsStabilization.LevelBlindSpot.swapOrder t m ↑c
+info: RequestProject/PaperTests/LevelBlindSpotTests.lean:220:0: PTPvsStabilization.PaperTests.LevelBlindSpotTests.swapOrderQ : ℕ → ℕ → ℚ → List (Fin 2 → ℚ)
+ℹ [8707/8718] Built RequestProject.PaperModuleRegistry (25s)
+info: RequestProject/PaperModuleRegistry.lean:216:0: Paper.paperModuleEntries : Lean.Environment → Array Paper.PaperModuleEntry
+✔ [8708/8718] Built RequestProject.PaperTests.Meaning.SwapBlock (26s)
+ℹ [8709/8718] Built RequestProject.PaperTests.ExactLayerCostTests (26s)
+info: RequestProject/PaperTests/ExactLayerCostTests.lean:297:0: PTPvsStabilization.PaperTests.ExactLayerCostTests.enumeratedChainCount : List ℕ → List (Fin 2 → ℚ) → ℕ
+info: RequestProject/PaperTests/ExactLayerCostTests.lean:298:0: PTPvsStabilization.PaperTests.ExactLayerCostTests.descendingRef : ℕ → List ℕ
+ℹ [8710/8718] Built RequestProject.PaperTests.CoverageSnapshot (21s)
+info: RequestProject/PaperTests/CoverageSnapshot.lean:140:0: PTPvsStabilization.PaperTests.CoverageSnapshot.run : PTPvsStabilization.CoverageAudit.Snapshot → IO Bool
+✔ [8711/8718] Built RequestProject.PaperTests.Meaning.UniformInstance (21s)
+ℹ [8712/8718] Built RequestProject.PaperTests.SwapBlockValueTests (23s)
+info: RequestProject/PaperTests/SwapBlockValueTests.lean:450:0: PTPvsStabilization.PaperTests.SwapBlockValueTests.swapBlockQ_bridge : ∀ (v : Fin 2 → ℚ) (p q : ℕ),
+  List.map PTPvsStabilization.PaperTests.ConflictCyclesTests.toRealVecQ
+      (PTPvsStabilization.PaperTests.SwapBlockValueTests.swapBlockQ v p q) =
+    PTPvsStabilization.SwapBlockValue.swapBlock (PTPvsStabilization.PaperTests.ConflictCyclesTests.toRealVecQ v) p q
+info: RequestProject/PaperTests/SwapBlockValueTests.lean:451:0: PTPvsStabilization.PaperTests.SwapBlockValueTests.altMultiplierQ : ℕ → ℕ → ℕ → ℚ
+ℹ [8713/8718] Built RequestProject.PaperTests.MeaningLedger (14s)
+info: RequestProject/PaperTests/MeaningLedger.lean:94:0: PTPvsStabilization.PaperTests.MeaningLedger.run : IO Bool
+ℹ [8714/8718] Built RequestProject.PaperTests.RelayCycleValueTests (21s)
+info: RequestProject/PaperTests/RelayCycleValueTests.lean:665:0: @PTPvsStabilization.PaperTests.RelayCycleValueTests.relayCycleQ_bridge : ∀ {m : ℕ} [inst : NeZero m]
+  (gain loss : ZMod m → ℚ),
+  List.map PTPvsStabilization.PaperTests.ConflictCyclesTests.toRealVecQ
+      (PTPvsStabilization.PaperTests.RelayCycleValueTests.relayCycleQ gain loss) =
+    PTPvsStabilization.RelayCycleValue.relayCycle (PTPvsStabilization.PaperTests.ConflictCyclesTests.toRealVecQ gain)
+      (PTPvsStabilization.PaperTests.ConflictCyclesTests.toRealVecQ loss)
+info: RequestProject/PaperTests/RelayCycleValueTests.lean:666:0: @PTPvsStabilization.PaperTests.RelayCycleValueTests.bestExitQ_bridge : ∀ {m : ℕ} [inst : NeZero m]
+  (headroom loss : ZMod m → ℚ),
+  ↑(PTPvsStabilization.PaperTests.RelayCycleValueTests.bestExitQ headroom loss) =
+    PTPvsStabilization.RelayCycleValue.bestExit (PTPvsStabilization.PaperTests.ConflictCyclesTests.toRealVecQ headroom)
+      (PTPvsStabilization.PaperTests.ConflictCyclesTests.toRealVecQ loss)
+ℹ [8715/8718] Built RequestProject.PaperTests.Runner (178s)
+info: RequestProject/PaperTests/Runner.lean:330:0: PTPvsStabilization.PaperTests.runAllPaperTests : IO Bool
+ℹ [8716/8718] Built RequestProject.TestingPlan (19s)
+info: RequestProject/TestingPlan.lean:789:0: PTPvsStabilization.TestPlan.runAll : IO Bool
+ℹ [8717/8718] Built RequestProject.TestingMain (12s)
+info: RequestProject/TestingMain.lean:24:0: main (_args : List String) : IO UInt32
+Build completed successfully (8718 jobs).

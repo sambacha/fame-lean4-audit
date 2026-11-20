@@ -1,0 +1,1 @@
+Axiom budget check passed: 17119 audited theorems across 629 modules, 43 tier-1 invariant and ARI declarations proved from the kernel axioms alone, 682 tier-2 compiler-trusted facts registered across 123 modules under a ceiling of 682, 61 product-manifest declarations held to tier 1 across 4 manifests with 4 declared exceptions, and no tier-3 dependency anywhere.

@@ -1,0 +1,400 @@
+  boundary price one: hits=2
+  boundary UInt8 maximum: hits=1
+  branch even ID: hits=128
+  branch odd ID: hits=128
+  nondegeneracy: distinctOutputs=256, minimum=2
+  precision: exact encode/parse round-trip plus independent byte layout; satisfied=true; mutationSanity=true
+Plausible wire round-trip: .success
+enclosure tightness: domain=all ordered endpoint pairs from {-2,-1,-1/2,0,1/2,1,2} (range [-2,2], denominator granularity 2) as numerator and divisor intervals, each paired with the lower endpoint, upper endpoint and midpoint of both intervals; total=7056; valid=3024; discarded=4032; validFloor=25%; boundaryHit=7020; distinctOutputs=60; widthExcess=0/0
+iterated enclosure: domain=all ordered endpoint pairs from {-1,-1/2,-1/4,0,1/4,1/2,3/4,1,5/4,2} (range [-1,2], denominator granularity 4) as intervals, each paired with every grid point as the evaluation point, at subdivision depths 0,1,2,3,4; total=550; valid=220; discarded=330; validFloor=20%; boundaryHit=494; distinctOutputs=35; depth 0: excess=15/4/4; depth 1: excess=7/8/1; depth 2: excess=13/32/1/2; depth 3: excess=3/16/1/4; depth 4: excess=3/32/1/8
+fine-grid division: domain=numerator intervals with endpoints in {-1,0,1/2,1} against divisor intervals with endpoints in {-2,-1,-1/2,-1/4,-1/8,-1/16,0,1/16,1/8,1/4,1/2,1,2} (range [-2,2], denominator granularity 16), each paired with the two endpoints and the midpoint of both intervals; total=8190; valid=3780; discarded=4410; validFloor=15%; boundaryHit=6300; maxReciprocal=16
+composite enclosure: domain=all ordered endpoint pairs from {-1,-1/2,-1/4,0,1/4,1/2,3/4,1,5/4,2} (range [-1,2], denominator granularity 4) as intervals, each paired with every grid point as the evaluation point, at subdivision depths 0,1,2,3,4,5,6,7,8; total=550; valid=220; discarded=330; validFloor=20%; boundaryHit=550; distinctOutputs=35; depth 0: excess=26/26; depth 1: excess=5/5; depth 2: excess=145/128/3/2; depth 3: excess=265/512/3/4; depth 4: excess=923/4096/1/4; depth 5: excess=26807/262144/1/8; depth 6: excess=51887/1048576/1/16; depth 7: excess=1615655/67108864/1/32; depth 8: excess=204778727/17179869184/1/64; outerOnlyExcess=11/4; outerOnceExcessAtDepth8=1417/512
+chained enclosure: domain=all ordered endpoint pairs from {-1,-1/2,-1/4,0,1/4,1/2,3/4,1,5/4,2} (range [-1,2], denominator granularity 4) as intervals, each paired with every grid point as the evaluation point, at subdivision depths 0,1,2,3,4,5,6,7,8; total=550; valid=220; discarded=330; validFloor=20%; boundaryHit=550; distinctOutputs=34; overshoot: d0=111/4/28 d1=27/4/7 d2=45/16/3 d3=1179/1024/3/2 d4=8415/16384/3/4 d5=66951/262144/3/8 d6=518391/4194304/3/16 d7=4141359/67108864/3/32 d8=32907807/1073741824/3/64; dependency loss by chain length: f=15/4 h∘f=4 g∘h∘f=111/4; piecewise-only loss=1/4
+[box-enclosure] domain=all ordered endpoint pairs from {-1,-1/2,0,1/2,1} (range [-1,1], denominator granularity 2) as intervals, all ordered pairs of those intervals as rectangles, each paired with every grid point pair as the evaluation point, at subdivision depths 0,1,2,3,4 (both coordinates bisected at every level) total=5625 valid=1225 discarded=4400 boundaries=11/11 branches=12/12 outputKinds=73 loss=one free variable=3, two free variables=6 widths=d=0: 6 ≤ 6, d=1: 2 ≤ 3, d=2: 1 ≤ 3/2, d=3: 1/2 ≤ 3/4, d=4: 1/4 ≤ 3/8 mutantsKilled=true accepted=true
+audit cancel/fill race: suite=cancel/fill race; domain=all 15 traces over {cancelA,matchIncoming} of length 0..3; total=15; valid=14; discarded=1; validFloor=90%; outputs=2/2; precision=0/0
+  boundary empty: hits=1
+  boundary singleton: hits=2
+  boundary repeated-event: hits=2
+  boundary reverse pair: hits=2
+  branch cancelOrEmpty: hits=8
+  branch matched: hits=7
+  mutant constant false: killed=true; witness=(some race/1/match)
+  mutant flip first comparison: killed=true; witness=(some race/1/cancel)
+  counts: total=15 valid=14 discarded=1 boundary=4 diverse=4/2 paths=2/2; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no trace longer than three events interleaves two cancels with two matches -> reach by: raise the bounded-word depth from 3 to 5
+  replay: race/0/empty,race/2/cancel-match,race/2/match-cancel; counterexample=none; failure reasons=[]
+audit allocation ordering: suite=allocation ordering; domain=empty, all 7 singletons, and full 7×7 ordered pair grid (57 cases); total=57; valid=49; discarded=8; validFloor=80%; outputs=2/2; precision=0/0
+  boundary empty: hits=1
+  boundary singleton: hits=7
+  boundary risk tie: hits=17
+  boundary adjacent risk: hits=24
+  boundary repeated event: hits=7
+  branch A first: hits=26
+  branch B first: hits=30
+  branch tie break: hits=17
+  mutant risk sign flip: killed=true; witness=(some alloc/2/risk--1-vs-1)
+  mutant reverse ID tie break: killed=true; witness=(some alloc/2/tied-risk-adjacent-id)
+  mutant arrival order: killed=true; witness=(some alloc/2/low-before-high)
+  counts: total=57 valid=49 discarded=8 boundary=5 diverse=5/3 paths=3/3; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no case allocates across three or more simultaneous events -> reach by: extend the ordered-pair grid to ordered triples; no case exercises a negative-risk tie at the extreme of the score range -> reach by: bias the score generator towards the representable minimum
+  replay: alloc/2/tied-risk-adjacent-id,alloc/2/low-before-high; counterexample=none; failure reasons=[]
+audit recompute state machine: suite=recompute state machine; domain=all 241 traces of length 0..2 over times 0..2 × all five triggers; total=241; valid=166; discarded=75; validFloor=66%; outputs=2/2; precision=0/0
+  boundary empty: hits=1
+  boundary singleton: hits=15
+  boundary equal timestamp: hits=75
+  boundary threshold adjacent timestamp: hits=50
+  boundary reordered timestamp: hits=75
+  boundary repeated event: hits=15
+  branch orderEvent: hits=84
+  branch oracleTick: hits=84
+  branch timeDecay: hits=84
+  branch governanceChange: hits=84
+  branch epochBoundary: hits=84
+  mutant drop version increment: killed=true; witness=(some recompute/1/0-orderEvent)
+  mutant retain old freeze time: killed=true; witness=(some recompute/1/1-oracleTick)
+  counts: total=241 valid=166 discarded=75 boundary=6 diverse=6/3 paths=5/5; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no trace recomputes more than twice between two oracle ticks -> reach by: raise the trace depth from 2 to 4 and bias towards oracleTick
+  replay: recompute/0/empty,recompute/2/equal-time,recompute/2/reordered-time; counterexample=none; failure reasons=[]
+audit exposure arithmetic: suite=exposure arithmetic; domain=full 5×5 integer grid [-2,2]²; total=25; valid=25; discarded=0; validFloor=100%; outputs=2/2; precision=0/0
+  boundary zero pair: hits=1
+  boundary equal: hits=5
+  boundary minimum: hits=9
+  boundary maximum: hits=9
+  boundary sign changing: hits=4
+  branch negativeGap: hits=10
+  branch zeroGap: hits=5
+  branch positiveGap: hits=10
+  mutant addition for subtraction: killed=true; witness=(some exposure/-2/1)
+  mutant constant zero: killed=true; witness=(some exposure/1/0)
+  counts: total=25 valid=25 discarded=0 boundary=5 diverse=5/3 paths=3/3; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no case exercises magnitudes outside [-2,2] -> reach by: widen the integer grid and add a saturating-magnitude generator
+  replay: exposure/0/0,exposure/-2/2,exposure/2/-2; counterexample=none; failure reasons=[]
+audit AMM/MM priority: suite=AMM/MM priority; domain=both policies × both liquidity sources × every sequence 0..4 (20 cases); total=20; valid=20; discarded=0; validFloor=100%; outputs=2/2; precision=0/0
+  boundary zero sequence: hits=4
+  boundary maximum sequence: hits=4
+  boundary adjacent to zero sequence: hits=4
+  boundary adjacent to maximum sequence: hits=4
+  boundary external source: hits=10
+  boundary native source: hits=10
+  branch fifoExternal: hits=5
+  branch fifoNative: hits=5
+  branch preferredExternal: hits=5
+  branch preferredNative: hits=5
+  mutant swap source priority: killed=true; witness=(some priority/preferred/external/0)
+  mutant constant zero: killed=true; witness=(some priority/fifo/external/1)
+  counts: total=20 valid=20 discarded=0 boundary=6 diverse=6/3 paths=4/4; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no case mixes more than two resting quotes at one price level -> reach by: generate books with three or more same-level quotes per source
+  replay: priority/preferred/external/0,priority/preferred/native/0; counterexample=none; failure reasons=[]
+audit error envelope: suite=error envelope; domain=full 5×5 grid for epoch size and cumulative delta 0..4; total=25; valid=25; discarded=0; validFloor=100%; outputs=2/2; precision=0/0
+  boundary zero width: hits=9
+  boundary nonpoint finite width: hits=16
+  boundary maximum corner: hits=1
+  boundary adjacent depth: hits=10
+  branch pointBound: hits=9
+  branch nonPointBound: hits=16
+  mutant arbitrarily wide bound: killed=true; witness=(some error/0/0)
+  mutant addition for multiplication: killed=true; witness=(some error/2/3)
+  counts: total=25 valid=25 discarded=0 boundary=4 diverse=4/2 paths=2/2; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no case exercises an epoch larger than four events -> reach by: raise the epoch-size grid bound
+  replay: error/0/0,error/1/1,error/4/4; counterexample=none; failure reasons=[]
+audit classification tables: suite=classification tables; domain=every constructor: 3 regimes, 2 paths, 10 architectures, 5 triggers; total=20; valid=20; discarded=0; validFloor=100%; outputs=2/2; precision=0/0
+  boundary all regimes: hits=3
+  boundary all paths: hits=2
+  boundary all architectures: hits=10
+  boundary all triggers: hits=5
+  branch calmHits: hits=1
+  branch elevatedHits: hits=1
+  branch criticalHits: hits=1
+  branch rankedHits: hits=1
+  branch proRataHits: hits=1
+  branch constantCostHits: hits=1
+  branch linearCostHits: hits=4
+  branch preservesHits: hits=2
+  branch conditionalHits: hits=3
+  branch redefinesHits: hits=2
+  branch replacesHits: hits=1
+  branch insufficientHits: hits=2
+  mutant constant classification: killed=true; witness=(some class/architecture/riskAwareEpoch)
+  mutant ignore ADL branch: killed=true; witness=(some class/path/adlBackstop)
+  counts: total=20 valid=20 discarded=0 boundary=4 diverse=4/2 paths=12/12; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no case exercises an architecture outside the ten enumerated ones -> reach by: extend the architecture enumeration when a new one is specified
+  replay: class/regime/calm,class/regime/elevated,class/regime/critical; counterexample=none; failure reasons=[]
+audit discrete primitives: suite=discrete primitives; domain=all Party traces length 0..2 and full current/freeze time grid 0..3; total=23; valid=23; discarded=0; validFloor=100%; outputs=2/2; precision=0/0
+  boundary empty trace: hits=1
+  boundary singleton trace: hits=2
+  boundary repeated party: hits=2
+  boundary equal timestamps: hits=4
+  boundary reversed timestamps: hits=6
+  branch ownerNone: hits=1
+  branch ownerA: hits=3
+  branch ownerB: hits=3
+  branch stalenessZero: hits=4
+  branch stalenessPositive: hits=6
+  mutant always no owner: killed=true; witness=(some primitive/party/A)
+  mutant staleness addition: killed=true; witness=(some primitive/time/1/1)
+  counts: total=23 valid=23 discarded=0 boundary=5 diverse=5/3 paths=5/5; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no trace exceeds two party events or a freeze time above three -> reach by: raise both bounded grids
+  replay: primitive/party/empty,primitive/time/0/0,primitive/time/3/0; counterexample=none; failure reasons=[]
+audit position-sensitive endpoint: suite=position-sensitive endpoint; domain=all 13 traces of length 0..2 over events {(-1,-1),(0,0),(1,1)}; total=13; valid=13; discarded=0; validFloor=100%; outputs=2/2; precision=0/0
+  boundary empty: hits=1
+  boundary singleton: hits=3
+  boundary repeated event: hits=3
+  boundary sign changing: hits=2
+  branch negativeEndpoint: hits=5
+  branch zeroEndpoint: hits=3
+  branch positiveEndpoint: hits=5
+  branch orderSensitivePair: hits=6
+  mutant drop position summand: killed=true; witness=(some remark/2/zero-positive)
+  mutant reverse insensitive: killed=true; witness=(some remark/2/negative-positive)
+  counts: total=13 valid=13 discarded=0 boundary=4 diverse=4/2 paths=4/4; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=false widths=; semantic gaps: no trace exceeds two events over the three-element event alphabet -> reach by: raise the bounded-word depth and widen the event alphabet
+  replay: remark/0/empty,remark/2/negative-positive,remark/2/repeated-positive; counterexample=none; failure reasons=[]
+audit enclosure tightness: suite=enclosure tightness; domain=all ordered endpoint pairs from {-2,-1,-1/2,0,1/2,1,2} (range [-2,2], denominator granularity 2) as numerator and divisor intervals, each paired with the lower endpoint, upper endpoint and midpoint of both intervals; total=7056; valid=3024; discarded=4032; validFloor=25%; outputs=2/2; precision=0/0
+  boundary point numerator: hits=1764
+  boundary point divisor: hits=1764
+  boundary zero endpoint: hits=1764
+  boundary smallest divisor magnitude: hits=1512
+  boundary zero-straddling divisor: hits=4032
+  boundary sign-changing numerator: hits=2268
+  boundary sampled point at endpoint: hits=5292
+  branch guard accepted: hits=3024
+  branch guard rejected: hits=4032
+  branch positive divisor: hits=1512
+  branch negative divisor: hits=1512
+  branch point result: hits=432
+  branch widened result: hits=2592
+  mutant sound but uselessly wide enclosure: killed=true; witness=(some enclosure/tightness/-100_100)
+  mutant swapped min/max hull: killed=true; witness=(some enclosure/soundness/min-max)
+  mutant dropped cross terms: killed=true; witness=(some enclosure/soundness/corners)
+  mutant forgotten reciprocal: killed=true; witness=(some enclosure/soundness/reciprocal)
+  mutant dropped divisor guard: killed=true; witness=(some enclosure/guard/straddle)
+  mutant negation without endpoint swap: killed=true; witness=(some enclosure/neg/soundness)
+  mutant reciprocal without endpoint swap: killed=true; witness=(some enclosure/inv/soundness)
+  mutant deleted function body: killed=true; witness=(some enclosure/soundness/deleted-body)
+  counts: total=7056 valid=3024 discarded=4032 boundary=7 diverse=7/4 paths=6/6; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=true widths=quotient width never exceeds the exact hull width@depth 1=0/0 met=true; quotient width at point inputs@depth 0=0/0 met=true; semantic gaps: no case exercises a divisor magnitude below one half, where the reciprocal grows without bound -> reach by: extend the endpoint grid with 1/4, 1/8 and 1/16; no case nests division inside a further interval operation, so accumulated widening over several iterations is not observed -> reach by: iterate div and add to a declared depth and bound the width at each depth
+  replay: enclosure/0_0/1_1/0/1,enclosure/-2_2/1|2_2/-2/1|2,enclosure/-1_0/-2_-1|2/-1/-2; counterexample=none; failure reasons=[]
+audit iterated_enclosure_width_bounds_at_depth: suite=iterated enclosure; domain=all ordered endpoint pairs from {-1,-1/2,-1/4,0,1/4,1/2,3/4,1,5/4,2} (range [-1,2], denominator granularity 4) as intervals, each paired with every grid point as the evaluation point, at subdivision depths 0,1,2,3,4; total=550; valid=220; discarded=330; validFloor=20%; outputs=35/8; precision=0/0
+  boundary point interval: hits=100
+  boundary maximiser strictly interior: hits=200
+  boundary maximiser exactly at an endpoint: hits=100
+  boundary unit interval: hits=10
+  boundary evaluation point at the maximiser: hits=55
+  boundary evaluation point at an endpoint: hits=100
+  boundary interval outside the unit interval: hits=90
+  boundary zero endpoint: hits=100
+  branch precondition satisfied: hits=220
+  branch precondition rejected: hits=330
+  branch oracle maximum at the interior peak: hits=300
+  branch oracle maximum at an endpoint: hits=250
+  branch depth 4 enclosure exact: hits=190
+  branch depth 4 enclosure still wide: hits=360
+  branch refinement strictly improves depth 0: hits=360
+  mutant sound but uselessly wide enclosure: killed=true; witness=(some iterated/width-budget/-100_100)
+  mutant depth argument ignored (never refines): killed=true; witness=(some iterated/width-budget/depth-4)
+  mutant bisection at the wrong point: killed=true; witness=(some iterated/reflection/2lo+hi-over-3)
+  mutant deleted function body: killed=true; witness=(some iterated/soundness/deleted-body)
+  mutant dropped last piece of the subdivision: killed=true; witness=(some iterated/soundness/dropped-piece)
+  mutant second factor frozen at the left endpoint: killed=true; witness=(some iterated/soundness/frozen-factor)
+  mutant sign error in the second factor: killed=true; witness=(some iterated/soundness/sign-flip)
+  mutant midpoint value returned as a point enclosure: killed=true; witness=(some iterated/soundness/midpoint)
+  mutant oracle perturbed to forget the interior peak: killed=true; witness=(some iterated/oracle/no-peak)
+  counts: total=550 valid=220 discarded=330 boundary=8 diverse=8/6 paths=7/7; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=3/32/1/8 softMet=true overApproximating=true widths=logistic enclosure overshoot@depth 0=15/4/4 met=true; logistic enclosure overshoot@depth 1=7/8/1 met=true; logistic enclosure overshoot@depth 2=13/32/1/2 met=true; logistic enclosure overshoot@depth 3=3/16/1/4 met=true; logistic enclosure overshoot@depth 4=3/32/1/8 met=true; semantic gaps: no case iterates beyond depth 4, so the asymptotic rate of the overshoot is observed only over five depths -> reach by: raise the declared depth list and extend depthBudget; no case enclosures a composition of two different over-approximating functions, so dependency across function boundaries is not observed -> reach by: add a second function with a repeated variable and enclose the composite
+  replay: iterated/0_1/depth-0..4; counterexample=none; failure reasons=[]
+audit fine_grid_division_near_zero_denominators: suite=fine-grid division; domain=numerator intervals with endpoints in {-1,0,1/2,1} against divisor intervals with endpoints in {-2,-1,-1/2,-1/4,-1/8,-1/16,0,1/16,1/8,1/4,1/2,1,2} (range [-2,2], denominator granularity 16), each paired with the two endpoints and the midpoint of both intervals; total=8190; valid=3780; discarded=4410; validFloor=15%; outputs=89/8; precision=0/0
+  boundary divisor magnitude below one half: hits=5670
+  boundary smallest divisor magnitude 1/16: hits=1080
+  boundary divisor endpoint exactly zero: hits=1170
+  boundary point divisor: hits=1170
+  boundary zero-straddling divisor: hits=4410
+  branch guard accepted: hits=3780
+  branch guard rejected: hits=4410
+  branch positive divisor: hits=1890
+  branch negative divisor: hits=1890
+  branch reciprocal magnitude at least four: hits=2700
+  mutant sound but uselessly wide enclosure: killed=true; witness=(some fine-div/exactness/-100_100)
+  counts: total=8190 valid=3780 discarded=4410 boundary=5 diverse=5/4 paths=5/5; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=0/0 softMet=true overApproximating=true widths=quotient width never exceeds the exact hull width@depth 0=0/0 met=true; semantic gaps: no case divides by a magnitude below 1/16, so the reciprocal is capped at 16 -> reach by: extend the fine grid with 1/32 and 1/64
+  replay: fine-div/0_1/1|16_1|8; counterexample=none; failure reasons=[]
+audit composite_enclosure_width_bounds_across_a_function_boundary: suite=composite enclosure; domain=all ordered endpoint pairs from {-1,-1/2,-1/4,0,1/4,1/2,3/4,1,5/4,2} (range [-1,2], denominator granularity 4) as intervals, each paired with every grid point as the evaluation point, at subdivision depths 0,1,2,3,4,5,6,7,8; total=550; valid=220; discarded=330; validFloor=20%; outputs=35/8; precision=0/0
+  boundary point interval: hits=100
+  boundary inner maximiser strictly interior: hits=200
+  boundary inner maximiser exactly at an endpoint: hits=100
+  boundary outer minimiser strictly inside the inner range: hits=260
+  boundary inner range touching the outer minimiser exactly: hits=140
+  boundary unit interval: hits=10
+  boundary evaluation point at a preimage of the global minimum: hits=110
+  boundary evaluation point at an endpoint: hits=100
+  boundary interval outside the unit interval: hits=90
+  branch precondition satisfied: hits=220
+  branch precondition rejected: hits=330
+  branch inner maximum at the interior peak: hits=300
+  branch inner maximum at an endpoint: hits=250
+  branch outer minimum at the interior trough: hits=400
+  branch outer minimum at an endpoint: hits=150
+  branch depth 8 enclosure exact: hits=100
+  branch depth 8 enclosure still wide: hits=450
+  branch refinement strictly improves depth 0: hits=450
+  mutant sound but uselessly wide enclosure: killed=true; witness=(some composite/width-budget/-100_100)
+  mutant depth argument ignored (never refines): killed=true; witness=(some composite/width-budget/depth-8)
+  mutant refinement stops at the function boundary: killed=true; witness=(some composite/width-budget/outer-once-depth-8)
+  mutant bisection at the wrong point: killed=true; witness=(some composite/reflection/2lo+hi-over-3)
+  mutant deleted function body: killed=true; witness=(some composite/soundness/deleted-body)
+  mutant dropped last piece of the subdivision: killed=true; witness=(some composite/soundness/dropped-piece)
+  mutant sign error in the outer factor: killed=true; witness=(some composite/soundness/outer-sign-flip)
+  mutant midpoint value returned as a point enclosure: killed=true; witness=(some composite/soundness/midpoint)
+  mutant oracle perturbed to forget the outer interior minimum: killed=true; witness=(some composite/oracle/no-trough)
+  counts: total=550 valid=220 discarded=330 boundary=9 diverse=9/7 paths=9/9; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=204778727/17179869184/1/64 softMet=true overApproximating=true widths=composite enclosure overshoot@depth 0=26/26 met=true; composite enclosure overshoot@depth 1=5/5 met=true; composite enclosure overshoot@depth 2=145/128/3/2 met=true; composite enclosure overshoot@depth 3=265/512/3/4 met=true; composite enclosure overshoot@depth 4=923/4096/1/4 met=true; composite enclosure overshoot@depth 5=26807/262144/1/8 met=true; composite enclosure overshoot@depth 6=51887/1048576/1/16 met=true; composite enclosure overshoot@depth 7=1615655/67108864/1/32 met=true; composite enclosure overshoot@depth 8=204778727/17179869184/1/64 met=true; semantic gaps: no case composes three or more over-approximating functions, so the growth of the dependency loss with the length of the chain is not observed -> reach by: add a third factor with a repeated variable and enclose the triple composite; every function under test is polynomial, so no case exercises an enclosure whose over-approximation comes from a transcendental or piecewise-defined operation -> reach by: add a piecewise-defined operation (absolute value or a clamp) and enclose it
+  replay: composite/0_1/depth-0..8; counterexample=none; failure reasons=[]
+audit chained_enclosure_width_bounds_along_a_three_link_chain: suite=chained enclosure; domain=all ordered endpoint pairs from {-1,-1/2,-1/4,0,1/4,1/2,3/4,1,5/4,2} (range [-1,2], denominator granularity 4) as intervals, each paired with every grid point as the evaluation point, at subdivision depths 0,1,2,3,4,5,6,7,8; total=550; valid=220; discarded=330; validFloor=20%; outputs=34/8; precision=0/0
+  boundary point interval: hits=100
+  boundary inner maximiser strictly interior: hits=200
+  boundary inner maximiser exactly at an endpoint: hits=100
+  boundary kink strictly inside the incoming range: hits=260
+  boundary incoming range touching the kink exactly: hits=140
+  boundary incoming range strictly on one side of the kink: hits=150
+  boundary outer minimiser inside the range the outer link receives: hits=230
+  boundary unit interval: hits=10
+  boundary evaluation point at an endpoint: hits=100
+  boundary interval outside the unit interval: hits=90
+  branch precondition satisfied: hits=220
+  branch precondition rejected: hits=330
+  branch inner maximum at the interior peak: hits=300
+  branch inner maximum at an endpoint: hits=250
+  branch piecewise maximum at the kink: hits=400
+  branch piecewise maximum at an endpoint: hits=150
+  branch outer minimum at the interior trough: hits=230
+  branch outer minimum at an endpoint: hits=320
+  branch depth 8 enclosure exact: hits=100
+  branch depth 8 enclosure still wide: hits=450
+  branch refinement strictly improves depth 0: hits=450
+  mutant sound but uselessly wide enclosure: killed=true; witness=(some chain/width-budget/-100_100)
+  mutant depth argument ignored (never refines): killed=true; witness=(some chain/width-budget/depth-8)
+  mutant refinement stops before the piecewise link: killed=true; witness=(some chain/width-budget/piecewise-once-depth-8)
+  mutant refinement stops before the outer link: killed=true; witness=(some chain/width-budget/outer-once-depth-8)
+  mutant min and max swapped in the piecewise link: killed=true; witness=(some chain/soundness/abs)
+  mutant one arm of the piecewise min dropped: killed=true; witness=(some chain/soundness/identity-link)
+  mutant kink moved from 0 to 1/2: killed=true; witness=(some chain/soundness/shifted-kink)
+  mutant bisection at the wrong point: killed=true; witness=(some chain/reflection/2lo+hi-over-3)
+  mutant deleted function body: killed=true; witness=(some chain/soundness/deleted-body)
+  mutant dropped last piece of the subdivision: killed=true; witness=(some chain/soundness/dropped-piece)
+  mutant midpoint value returned as a point enclosure: killed=true; witness=(some chain/soundness/midpoint)
+  mutant oracle perturbed to forget the kink: killed=true; witness=(some chain/oracle/no-kink)
+  counts: total=550 valid=220 discarded=330 boundary=10 diverse=10/8 paths=11/11; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=32907807/1073741824/3/64 softMet=true overApproximating=true widths=chained enclosure overshoot@depth 0=111/4/28 met=true; chained enclosure overshoot@depth 1=27/4/7 met=true; chained enclosure overshoot@depth 2=45/16/3 met=true; chained enclosure overshoot@depth 3=1179/1024/3/2 met=true; chained enclosure overshoot@depth 4=8415/16384/3/4 met=true; chained enclosure overshoot@depth 5=66951/262144/3/8 met=true; chained enclosure overshoot@depth 6=518391/4194304/3/16 met=true; chained enclosure overshoot@depth 7=4141359/67108864/3/32 met=true; chained enclosure overshoot@depth 8=32907807/1073741824/3/64 met=true; semantic gaps: no link of the chain is transcendental, so no case exercises an enclosure whose over-approximation comes from an operation without a closed-form rational range -> reach by: add a rational approximation of a transcendental map with a certified remainder and enclose it; the chain is one-dimensional throughout, so no case exercises the dependency between two different variables of a multivariate enclosure -> reach by: add a two-variable map whose arguments share a subexpression and enclose it over a box
+  replay: chain/0_1/depth-0..8; counterexample=none; failure reasons=[]
+audit box_enclosure_width_bounds_for_a_two_variable_map: suite=box enclosure; domain=all ordered endpoint pairs from {-1,-1/2,0,1/2,1} (range [-1,1], denominator granularity 2) as intervals, all ordered pairs of those intervals as rectangles, each paired with every grid point pair as the evaluation point, at subdivision depths 0,1,2,3,4 (both coordinates bisected at every level); total=5625; valid=1225; discarded=4400; validFloor=15%; outputs=73/8; precision=0/0
+  boundary point rectangle: hits=625
+  boundary exactly one degenerate side: hits=2500
+  boundary minimiser strictly inside the first side: hits=1500
+  boundary minimiser exactly at an endpoint of the first side: hits=1875
+  boundary first side strictly on one side of the minimiser: hits=2250
+  boundary minimiser strictly inside the second side: hits=1500
+  boundary minimiser exactly at an endpoint of the second side: hits=1875
+  boundary diagonal rectangle: hits=375
+  boundary origin-symmetric rectangle: hits=225
+  boundary evaluation point exactly at a corner: hits=625
+  boundary rectangle in the positive quadrant: hits=225
+  branch precondition satisfied: hits=1225
+  branch precondition rejected: hits=4400
+  branch first square minimised at zero: hits=3375
+  branch first square minimised at an endpoint: hits=2250
+  branch second square minimised at zero: hits=3375
+  branch second square minimised at an endpoint: hits=2250
+  branch true range strictly straddles zero: hits=2700
+  branch true range on one side of zero: hits=2925
+  branch depth 4 enclosure exact: hits=1225
+  branch depth 4 enclosure still wide: hits=4400
+  branch refinement strictly improves depth 0: hits=4500
+  branch one-sided refinement strictly worse than two-sided: hits=3350
+  mutant sound but uselessly wide enclosure: killed=true; witness=(some box/width-budget/-1000_1000)
+  mutant depth argument ignored (never refines): killed=true; witness=(some box/width-budget/depth-4)
+  mutant only the first coordinate subdivided: killed=true; witness=(some box/width-budget/split-x-only-depth-4)
+  mutant second factor's sign wrong, giving (x+y)^2: killed=true; witness=(some box/soundness/same-factor)
+  mutant result negated: killed=true; witness=(some box/soundness/sign-flip)
+  mutant two of four corner products dropped: killed=true; witness=(some box/soundness/corner-drop)
+  mutant second coordinate frozen at its midpoint: killed=true; witness=(some box/soundness/frozen-y)
+  mutant subdivision at the wrong point: killed=true; witness=(some box/reflection/2lo+hi-over-3)
+  mutant deleted function body: killed=true; witness=(some box/soundness/deleted-body)
+  mutant dropped last cell of the subdivision: killed=true; witness=(some box/soundness/dropped-cell)
+  mutant midpoint value returned as a point enclosure: killed=true; witness=(some box/soundness/midpoint)
+  mutant oracle perturbed to forget the zero of the square: killed=true; witness=(some box/oracle/no-zero)
+  counts: total=5625 valid=1225 discarded=4400 boundary=11 diverse=11/8 paths=12/12; syntactic gaps: boundaries=[] branches=[]; tightness: hard=0/0 soft=1/4/3/8 softMet=true overApproximating=true widths=box enclosure overshoot@depth 0=6/6 met=true; box enclosure overshoot@depth 1=2/3 met=true; box enclosure overshoot@depth 2=1/3/2 met=true; box enclosure overshoot@depth 3=1/2/3/4 met=true; box enclosure overshoot@depth 4=1/4/3/8 met=true; semantic gaps: the map is separable, so its exact range is a difference of two one-dimensional ranges and no case exercises an oracle that needs a genuinely two-dimensional optimisation -> reach by: add a non-separable two-variable map such as x*y - x - y and derive its exact range over a box from the corner and critical-point values; both coordinates are subdivided uniformly, so no case exercises a subdivision that chooses which coordinate to split -> reach by: add a widest-first subdivision strategy and assert the same width budgets against it
+  replay: box/-1_1^2/depth-0..4; counterexample=none; failure reasons=[]
+[precondition ledger] 77 guarded properties, accepted=true
+  pol.propInsuranceFirst: guard `the fund is below target and the step earns something` hit 951/1200 (floor 20%, missed 249) over accrualCorpus; holds=true; mutant allocateRevenueSkipsInsurance killed inside guard at case 1=true
+  pol.propNoPayoutWithoutRented: guard `no rented principal is outstanding` hit 343/1200 (floor 15%, missed 857) over accrualCorpus; holds=true; mutant allocateRevenuePaysRentedAlways killed inside guard at case 2=true
+  pol.propOwnedAbsorbsFirst: guard `the loss fits inside owned capital` hit 229/1000 (floor 15%, missed 771) over dragCorpus; holds=true; mutant realizeDragInsuranceFirst killed inside guard at case 12=true
+  pol.propSufficiencySafety: guard `the §2.3 sufficiency hypothesis holds` hit 810/1000 (floor 40%, missed 190) over dragCorpus; holds=true; mutant realizeDragUncapped killed inside guard at case 11=true
+  pol.propGainGrowsOwned: guard `the realization is a gain` hit 414/1000 (floor 25%, missed 586) over dragCorpus; holds=true; mutant realizeDragGainSignFlip killed inside guard at case 0=true
+  pol.propUnchangedBeforeNotice: guard `the notice period has not elapsed` hit 432/1000 (floor 20%, missed 568) over noticeCorpus; holds=true; mutant effectiveRateNoNotice killed inside guard at case 1=true
+  pol.propAnnouncedAfterNotice: guard `the notice period has elapsed` hit 568/1000 (floor 20%, missed 432) over noticeCorpus; holds=true; mutant effectiveRateOffByOne killed inside guard at case 6=true
+  polsuite.propNavUnchangedAtPositiveDepth: guard `the pool has positive depth and a positive unit count` hit 912/1200 (floor 30%, missed 288) over vlrCorpus; holds=true; mutant staleNavMinter killed inside guard at case 1=true
+  polsuite.propMintRedeemNotProfitable: guard `the pool has positive depth and a positive unit count` hit 912/1200 (floor 30%, missed 288) over vlrCorpus; holds=true; mutant parityMinter killed inside guard at case 1=true
+  polsuite.propRedeemCoversOwed: guard `the pool covers the redemption in full` hit 951/1200 (floor 30%, missed 249) over vlrCorpus; holds=true; mutant haircutRedeemer killed inside guard at case 3=true
+  polsuite.propSeniorUntouched: guard `junior capital covers the whole loss` hit 369/1000 (floor 20%, missed 631) over trancheCorpus; holds=true; mutant absorbLoss_mutant_seniorFirst killed inside guard at case 7=true
+  polsuite.propDrawdownBounded: guard `the structure is large enough to absorb the loss` hit 595/1000 (floor 20%, missed 405) over trancheCorpus; holds=true; mutant absorbLossHalfDraw killed inside guard at case 0=true
+  polsuite.propSeniorOnlyAfterJuniorExhausted: guard `senior capital was drawn on` hit 624/1000 (floor 15%, missed 376) over trancheCorpus; holds=true; mutant absorbLoss_mutant_seniorFirst killed inside guard at case 0=true
+  polsuite.propNoteImpairmentIsDisclosed: guard `the drag stream impairs the note` hit 536/800 (floor 20%, missed 264) over noteCorpus; holds=true; mutant accrueDrag_mutant_flooredAtZero killed inside guard at case 0=true
+  token.propReserveBound: guard `the book is deep enough to carry the redemption` hit 704/1000 (floor 30%, missed 296) over bookCorpus; holds=true; mutant executeFirstLevelOnly killed inside guard at case 7=true
+  token.propPriorityOrder: guard `the waterfall reduces at least one queue entry` hit 636/1000 (floor 20%, missed 364) over waterfallCorpus; holds=true; mutant absorbReverseOrder killed inside guard at case 0=true
+  token.propGapBound: guard `the price move is inside the breaker-derived gap bound` hit 911/1000 (floor 40%, missed 89) over gapCorpus; holds=true; mutant positionValueSquared killed inside guard at case 0=true
+  ledger.propBoundaryBlocks: guard `only m − 1 distinct signers are available` hit 1817/3000 (floor 40%, missed 1183) over custodyCorpus; holds=true; mutant stepCustodyMut killed inside guard at case 1=true
+  token.propOutOfBandRefused: guard `governance approved a band and the request falls outside it` hit 670/1200 (floor 15%, missed 530) over bandCorpus; holds=true; mutant mkTokenParamsWidened killed inside guard at case 9=true
+  composition.propCollateralPosted: guard `the trace applies an opening or a mint` hit 200/200 (floor 30%, missed 0) over venueCorpus; holds=true; mutant stepCollateralDoubleCount killed inside guard at case 0=true
+  composition.propRedemptionSettled: guard `the trace applies a redemption` hit 106/200 (floor 20%, missed 94) over venueCorpus; holds=true; mutant stepUnsettledProceeds killed inside guard at case 2=true
+  faults.oracleStaleBlocksQuoting: guard `the run reaches a snapshot older than the staleness budget` hit 16/70 (floor 20%, missed 54) over corpus; holds=true; mutant mutantQuoteIgnoresStaleness killed inside guard at case 9=true
+  faults.oracleRecoversWithin: guard `the run reaches a snapshot older than the staleness budget` hit 16/70 (floor 20%, missed 54) over corpus; holds=true; mutant stepNoRefresh killed inside guard at case 9=true
+  enclosure.soundnessOf: guard `the divisor does not straddle zero and both sampled points lie in their intervals` hit 3024/7056 (floor 25%, missed 4032) over corpus; holds=true; mutant mutantMinMaxSwap killed inside guard at case 9=true
+  enclosure.tightnessOf: guard `the divisor does not straddle zero and both sampled points lie in their intervals` hit 3024/7056 (floor 25%, missed 4032) over corpus; holds=true; mutant mutantTrivialWide killed inside guard at case 0=true
+  enclosure.exactnessOf: guard `the divisor does not straddle zero and both sampled points lie in their intervals` hit 3024/7056 (floor 25%, missed 4032) over corpus; holds=true; mutant mutantDropTerm killed inside guard at case 261=true
+  enclosure.pointExactnessOf: guard `both intervals are points` hit 378/7056 (floor 2%, missed 6678) over corpus; holds=true; mutant mutantTrivialWide killed inside guard at case 0=true
+  enclosure.guardOf: guard `the divisor straddles zero, so the operation must refuse` hit 4032/7056 (floor 20%, missed 3024) over corpus; holds=true; mutant mutantNoGuard killed inside guard at case 27=true
+  enclosure.inclusionMonotoneOf: guard `the divisor does not straddle zero and both sampled points lie in their intervals` hit 3024/7056 (floor 25%, missed 4032) over corpus; holds=true; mutant mutantMinMaxSwap killed inside guard at case 0=true
+  enclosure.scalarHomogeneityOf: guard `the divisor does not straddle zero and both sampled points lie in their intervals` hit 3024/7056 (floor 25%, missed 4032) over corpus; holds=true; mutant mutantTrivialWide killed inside guard at case 0=true
+  enclosure.monotoneNumeratorOf: guard `the divisor is strictly positive` hit 1512/7056 (floor 10%, missed 5544) over corpus; holds=true; mutant mutantNegatedQuotient killed inside guard at case 198=true
+  enclosure.negSoundnessOf: guard `the sampled point lies in the numerator interval` hit 7056/7056 (floor 50%, missed 0) over corpus; holds=true; mutant mutantNegNoSwap killed inside guard at case 252=true
+  enclosure.invInvolutionOf: guard `the interval does not straddle zero` hit 12/28 (floor 40%, missed 16) over boxes; holds=true; mutant mutantInvPointApprox killed inside guard at case 1=true
+  enclosure.invSoundnessOf: guard `the divisor does not straddle zero and the sampled point lies in it` hit 3024/7056 (floor 25%, missed 4032) over corpus; holds=true; mutant mutantInvNoSwap killed inside guard at case 9=true
+  gexview.propMergeDeltaDuplicate: guard `the delta has already been merged into the view` hit 3/12 (floor 20%, missed 9) over gexCorpus; holds=true; mutant mergeAlways killed inside guard at case 4=true
+  lmm.propGateRefusesInvalid: guard `the proposed transition is invalid` hit 726/1200 (floor 20%, missed 474) over modeCorpus; holds=true; mutant ungatedGate killed inside guard at case 0=true
+  lmm.propGateAcceptsValid: guard `the proposed transition is valid` hit 474/1200 (floor 20%, missed 726) over modeCorpus; holds=true; mutant refuseAllGate killed inside guard at case 3=true
+  lmm.propRefusedTransitionIsANoOp: guard `the proposed transition is invalid` hit 726/1200 (floor 20%, missed 474) over modeCorpus; holds=true; mutant ungatedGate killed inside guard at case 0=true
+  lmm.propAdmittedWithinModeCeiling: guard `the limit check under audit admits the position` hit 789/1200 (floor 20%, missed 411) over modeCorpus; holds=true; mutant absoluteOnlyAdmitter killed inside guard at case 0=true
+  lmm.propAdmittedWithinAbsoluteCeiling: guard `the limit check under audit admits the position` hit 1074/1200 (floor 20%, missed 126) over modeCorpus; holds=true; mutant looseCeilingAdmitter killed inside guard at case 1=true
+  lmm.propObligationUsesModeFloor: guard `the check under audit reports the obligation as met` hit 136/1200 (floor 10%, missed 1064) over modeCorpus; holds=true; mutant flatFloorObligation killed inside guard at case 4=true
+  lmm.propObligationAtLeastBaseline: guard `the check under audit reports the obligation as met` hit 618/1200 (floor 20%, missed 582) over modeCorpus; holds=true; mutant lowFloorObligation killed inside guard at case 0=true
+  lmm.propSelfDealtFillRefused: guard `the proposed fill has the market maker on both sides` hit 209/1200 (floor 5%, missed 991) over modeCorpus; holds=true; mutant selfDealingFillAdmitter killed inside guard at case 3=true
+  lmm.propRingFenced: guard `the loss fits inside the remaining LMM budget` hit 531/1200 (floor 20%, missed 669) over riskCorpus; holds=true; mutant tranchesFirstAbsorber killed inside guard at case 1=true
+  lmm.propTranchesOnlyAfterBudget: guard `the absorber under audit moved shared tranche capital` hit 1078/1200 (floor 20%, missed 122) over riskCorpus; holds=true; mutant tranchesFirstAbsorber killed inside guard at case 0=true
+  lmmgov.propSurplusDrawsNothing: guard `the account has posted at least its requirement` hit 202/600 (floor 30%, missed 398) over guarantyCorpus; holds=true; mutant unclampedAbsorber killed inside guard at case 2=true
+  lmmgov.propJuniorIsDrawnFirst: guard `the junior tranche covers the whole shortfall` hit 100/600 (floor 15%, missed 500) over guarantyCorpus; holds=true; mutant seniorFirstAbsorber killed inside guard at case 7=true
+  lmmgov.propSeniorOnlyAfterJunior: guard `senior capital was drawn on` hit 290/600 (floor 40%, missed 310) over guarantyCorpus; holds=true; mutant seniorFirstAbsorber killed inside guard at case 1=true
+  lmmgov.propDrawIsExactlyTheShortfall: guard `the structure can absorb the whole shortfall` hit 368/600 (floor 55%, missed 232) over guarantyCorpus; holds=true; mutant unclampedAbsorber killed inside guard at case 2=true
+  agentic.propWallBlocksWithdrawal: guard `the origin account is a walled agent account` hit 306/600 (floor 45%, missed 294) over accessCorpus; holds=true; mutant leakyWaller killed inside guard at case 0=true
+  agentic.propWallBlocksDeposit: guard `the origin account is a walled agent account` hit 306/600 (floor 45%, missed 294) over accessCorpus; holds=true; mutant openWaller killed inside guard at case 0=true
+  agentic.propHumanKeepsValueMovement: guard `the origin account belongs to a person` hit 294/600 (floor 45%, missed 306) over accessCorpus; holds=true; mutant sealedWaller killed inside guard at case 1=true
+  agentic.propAccessOriginIsWalled: guard `the rule under audit admits the request` hit 308/600 (floor 45%, missed 292) over accessCorpus; holds=true; mutant interfaceOnlyAccessor killed inside guard at case 2=true
+  agentic.propAccessInterfaceIsWalled: guard `the rule under audit admits the request` hit 306/600 (floor 45%, missed 294) over accessCorpus; holds=true; mutant originOnlyAccessor killed inside guard at case 0=true
+  agentic.propIssuableCaseIssues: guard `the event is verified and the payment confirmed` hit 105/600 (floor 15%, missed 495) over receiptCorpus; holds=true; mutant neverIssuePath killed inside guard at case 3=true
+  agentic.propZeroUnitsAreFree: guard `the replay consumes no compute units` hit 73/600 (floor 10%, missed 527) over replayCorpus; holds=true; mutant fixedFeeMeterer killed inside guard at case 4=true
+  agentic.propMarginIsEarnedWhenItBites: guard `units and margin are both positive` hit 435/600 (floor 65%, missed 165) over replayCorpus; holds=true; mutant freeMeterer killed inside guard at case 0=true
+  agentic.propBreachForfeitsEverything: guard `the observed toxicity breaches the bound` hit 440/600 (floor 65%, missed 160) over bondCorpus; holds=true; mutant lenientSettler killed inside guard at case 0=true
+  agentic.propDiscountRequiresFavorableSettlement: guard `the observed toxicity breaches the bound` hit 440/600 (floor 65%, missed 160) over bondCorpus; holds=true; mutant alwaysGrantedDiscounter killed inside guard at case 0=true
+  agentic.propFavorableSettlementEarnsTheDiscount: guard `the observed toxicity stays within the bound` hit 160/600 (floor 25%, missed 440) over bondCorpus; holds=true; mutant neverGrantedDiscounter killed inside guard at case 3=true
+  agentic.propParticipantGetsABond: guard `the account is on the register` hit 164/600 (floor 25%, missed 436) over bondCorpus; holds=true; mutant refusingCreator killed inside guard at case 2=true
+  agentic.propAdmissibleSeatIsAdmitted: guard `the incoming seat is bonded and fits under the ceiling` hit 234/500 (floor 40%, missed 266) over leaseCorpus; holds=true; mutant closedLeaseAdmitter killed inside guard at case 2=true
+  gate.propViableAllPrefixes: guard `the calibration under audit calls the point viable` hit 5/64 (floor 5%, missed 59) over calibrationGrid; holds=true; mutant viableEndpointOnly killed inside guard at case 47=true
+  cutover.propMonotone: guard `the case holds two orders with different EV losses` hit 3000/3000 (floor 90%, missed 0) over cutoverCorpus; holds=true; mutant mutInverted killed inside guard at case 0=true
+  cutover.propUnclampedWhenAffordable: guard `the aggregate cap does not bind on this case` hit 2078/3000 (floor 20%, missed 922) over cutoverCorpus; holds=true; mutant haircutPayouts killed inside guard at case 0=true
+  yield.propBudgetBeforeShared: guard `the absorber under audit moved shared tranche capital` hit 60/144 (floor 15%, missed 84) over yieldCorpus; holds=true; mutant parallelAbsorberQ killed inside guard at case 99=true
+  yield.propNettingIsStrict: guard `the epoch absorbed something` hit 75/144 (floor 30%, missed 69) over yieldCorpus; holds=true; mutant grossForNetQ killed inside guard at case 57=true
+  yield.propCompoundingExceedsSimple: guard `the cadence compounds and the period rate is positive` hit 42/144 (floor 20%, missed 102) over yieldCorpus; holds=true; mutant simpleForCompoundedQ killed inside guard at case 19=true
+  yield.propBaseFollowsConvention: guard `the escrowed and deployed capital bases disagree` hit 138/144 (floor 50%, missed 6) over yieldCorpus; holds=true; mutant escrowedForEveryConventionQ killed inside guard at case 0=true
+  yield.propBaseSignCondition: guard `the epoch lost money, so the numerator is negative` hit 45/144 (floor 20%, missed 99) over yieldCorpus; holds=true; mutant signlessRaterQ killed inside guard at case 36=true
+  yield.propClampThresholdIsExact: guard `the loss meets the budget capacity exactly` hit 27/144 (floor 10%, missed 117) over yieldCorpus; holds=true; mutant parallelAbsorberQ killed inside guard at case 69=true
+  bracket.propFloorIsAFloor: guard `the bracket is nondegenerate: the worst case absorbs strictly more than the best` hit 20/144 (floor 10%, missed 124) over bracketCorpus; holds=true; mutant bestCaseForFloorQ killed inside guard at case 76=true
+  bracket.propFloorRoundedDown: guard `the exact floor is not representable at the published precision` hit 35/144 (floor 15%, missed 109) over bracketCorpus; holds=true; mutant nearestRounderQ killed inside guard at case 41=true
+  memeMarkets.propAdmittedStaysBacked: guard `the request is admitted against the available balances` hit 140/240 (floor 20%, missed 100) over validCorpus; holds=true; mutant capacity-is-max killed inside guard at case 0=true
+  settlementPrice.propTerminates: guard `the quorum is missing and the deferral budget is spent` hit 93/300 (floor 20%, missed 207) over validCorpus; holds=true; mutant defers-forever killed inside guard at case 0=true
+  settlementPrice.propMinorityRobust: guard `the snapshot carries three or more contributing sources` hit 54/300 (floor 10%, missed 246) over validCorpus; holds=true; mutant max-instead-of-median killed inside guard at case 3=true
+  settlementPrice.propMedianBalance: guard `the rule settled on a quorum strictly inside the band` hit 49/300 (floor 10%, missed 251) over validCorpus; holds=true; mutant max-instead-of-median killed inside guard at case 3=true
+[detsim:paper.FeeModel (§4.2)] accepted=true counts total=400 valid=400 boundary=122 diverse=12 paths=6 | soft-tightness=50% | failed= | syntactic gaps:  | semantic gaps: no case exercises a non-integral rate or cap, so *this* corpus says nothing about rational rounding of the clamp threshold -> done, in the sibling suite `DetSim.Applied.FeeModelRationalSuite`: its generator draws rates in quarters, caps in thirds and exposures in halves, its boundary population contains `rate * vex = cap` at the non-integral point (3/2, 5/3, 5/2), and its `surcharge-floors-the-product` mutant — provably equivalent to the policy on every integral case — is rejected there; no case has a negative cap, so the interaction between a negative cap and the nonnegativity theorem's hypothesis is unexercised here -> done, in `DetSim.Applied.FeeModelRationalSuite`: about a third of its caps are negative, the counterexample to the unguarded nonnegativity claim is promoted there into the general law `PTPvsStabilization.FeeModel.cappedVexTailSurcharge_of_neg_cap`, and the defensive patch that would hide it (`surcharge-clamps-negative-cap-to-zero`) is required to be rejected; the continuous field surcharge is fixed at 2 throughout, so no case here distinguishes a fee whose continuous component is zero -> done, in `DetSim.Applied.FeeModelRationalSuite`: the continuous component is a field of its case type taking the values 0, 1/2, 1, 3/2 and 2, the fee-free region is a declared boundary, and the `total-hardcodes-continuous-two` mutant is rejected there
+[detsim:paper.FeeModel (§4.2, rational and signed parameters)] accepted=true counts total=400 valid=400 boundary=134 diverse=15 paths=8 | soft-tightness=50% | failed= | syntactic gaps:  | semantic gaps: every denominator in this corpus divides twelve, so a charge whose exact value needs a large denominator — where a fixed-point implementation with a coarse tick would round — is unexercised -> draw the rate from sevenths and the exposure from elevenths, and add a boundary value whose exact charge has denominator 77; the transition rate is fixed at 5 throughout, so no case distinguishes a policy whose transition component is scaled differently from its continuous one -> lift `transitionRate` into `FeeCase` with the boundary values 0 and 1 and re-assert additivity separately in each component; the snapshot is fixed at unit spot and unit gamma with no vanna, so `ΔGEX⁺` is the weight change itself and the exemption test never depends on the snapshot -> draw `snapshotQ` per case over spot, gamma and vanna in halves, including a negative gamma, so that the sign of `ΔGEX⁺` and the sign of `Δw` can disagree
+[detsim:fame.node (faults, state coverage, codec, seed stability)] accepted=true counts total=75 valid=75 boundary=40 diverse=9 paths=21 | soft-tightness=50% | failed= | syntactic gaps: quoting=false,quorum=false,executed=false,sweeping=false,escrow>0=false; quoting=false,quorum=false,executed=false,sweeping=false,escrow>0=true; quoting=false,quorum=false,executed=true,sweeping=false,escrow>0=false; quoting=false,quorum=false,executed=true,sweeping=false,escrow>0=true; quoting=false,quorum=false,executed=true,sweeping=true,escrow>0=false; quoting=false,quorum=false,executed=true,sweeping=true,escrow>0=true; quoting=false,quorum=true,executed=false,sweeping=false,escrow>0=false; quoting=false,quorum=true,executed=false,sweeping=true,escrow>0=false; quoting=false,quorum=true,executed=true,sweeping=false,escrow>0=false; quoting=false,quorum=true,executed=true,sweeping=true,escrow>0=false; quoting=true,quorum=false,executed=true,sweeping=false,escrow>0=false; quoting=true,quorum=false,executed=true,sweeping=false,escrow>0=true; quoting=true,quorum=false,executed=true,sweeping=true,escrow>0=false; quoting=true,quorum=false,executed=true,sweeping=true,escrow>0=true; quoting=true,quorum=true,executed=false,sweeping=false,escrow>0=false; quoting=true,quorum=true,executed=true,sweeping=false,escrow>0=false | semantic gaps: executed while no quorum is present -> unreachable by construction: execution requires m approvals and a revocation cannot unlatch the flag — this family is a proof obligation, not a generator gap; escrow released back to zero after a crash mid-release -> reachable: add a releaseEscrow action after the crash tick to the fault program; fee sweep stopped while the fee pool is non-empty and the snapshot is fresh -> reachable: add a chargeFee action before the feeSweepFailure tick; no case injects three or more faults, so a triple interaction that neither fault nor pair produces is unexercised -> extend `pairFaultSchedules` to ordered triples at ticks 1, 4 and 6; the alphabet has five faults, so this is 125 further enumerated cases
+[detsim:paper.EngineModel (§1.1 price-time matcher)] accepted=true counts total=300 valid=300 boundary=91 diverse=14 paths=11 | soft-tightness=100% | failed= | syntactic gaps: i;a;a;i | semantic gaps: no program rests a maker at a price better than the resting book, so the cross-level sweep of §1.2 is never exercised by this suite -> extend `Action` with a `restAtPrice` constructor and drive `PTPvsStabilization.EngineModel.sweep` from the same programs; no program cancels an order from the middle of the queue, so the interaction between cancellation and the post-state matching invariant is only seen at the front -> add a `cancelAt (i : Nat)` action and a boundary program that cancels the second of three orders between two matches; residuals never exceed seven lots, so no case distinguishes a matcher that saturates at a small width -> widen the residual draw to 0..1000 and add a boundary book whose depth exceeds the largest incoming quantity by one lot
+[detsim:asp.phase6 feed simulator (state machine, adapter, extreme scenarios, wire vectors)] accepted=true counts total=346 valid=269 boundary=98 diverse=13 paths=17 | soft-tightness=50% | failed= | syntactic gaps:  | semantic gaps: no case reads the feed twice inside one settlement, so a feed that answers differently on the second call within a transaction is unexercised -> extend `FeedCase` with a second `(fault, now)` pair and assert that the adapter's two readings agree, which is the reentrancy row of §4.5; the corpus never disagrees across several feeds, so the multi-source consensus row of §4.4 is modelled by a single aggregator -> generalise `FeedCase.transitions` to a triple of feed programs and add a median-of-three adapter, then reuse the same guard chain per source; every reading in this suite is `heuristic`: it comes from a modelled feed, not from a deployed address, so no row here can raise a settlement above that tier -> once a feed address exists, replay the same corpus against a forked node and tag the resulting readings `runtimeChecked`; the adapter needs no change, only the backing store does
+[detsim:asp.Phase1 settlement state machine] accepted=true counts total=400 valid=196 boundary=129 diverse=15 paths=15 | soft-tightness=100% | failed= | syntactic gaps:  | semantic gaps: no trace reaches the vault-underflow guard of `ASP.applyDelta`: with the book-keeping invariant intact, a debit large enough to underflow the vault total is always refused earlier by the payer's own balance check -> reach it by generating a state whose `totalBalances` has been desynchronised from the individual balances — that is, by testing the guard against a deliberately broken `depositState` rather than against a reachable state; the guard's necessity is instead settled by proof in `ASP.balance_le_totalBalances`; the batched withdrawal path (`executeBatchedWithdrawals`) is not exercised by this corpus: every trace withdraws through the instant path -> add a `batchWithdraw` command to the trace shape with its own hash alphabet, so that the withdrawal replay guard and the all-or-nothing fold of the payout batch are covered here as well as in `ASP.Properties`; every batch in this corpus has exactly two deltas and every trace exactly two batches, so nothing here distinguishes a bug that needs three or more deltas — an ordering-dependent guard, say, or a quadratic dependency check -> widen the batch to a generated length with a boundary population at one and at the design document's fifty-delta ceiling, and re-run the atomicity and conservation laws over it; the surplus payout (`withdrawSurplus`) never runs in this corpus, so the interaction between accrued fees and the conservation invariant is exercised only in the direction that accrues them -> append a surplus payout at a generated amount to the trace shape; the naive variant of the design document's sketch is already refuted by `ASP.withdrawSurplusNaive_breaks_conservation`, and the law here would be that the corrected one preserves conservation at every step
+[detsim:enclosure.ChainedEnclosure (sampled)] accepted=true counts total=400 valid=200 boundary=119 diverse=10 paths=4 | soft-tightness=100% | failed= | syntactic gaps: kink-at-endpoint|exact; kink-inside|exact | semantic gaps: the sampled corpus is checked at one working depth, so the asymptotic rate of the overshoot is not observed here -> done, in `PTPvsStabilization.ChainedEnclosure`: the enumerated corpus asserts a strictly decreasing width budget at depths 0 to 8; endpoints are drawn from a sixteenth grid, so no case exercises an interval narrower than one sixteenth, where the enclosure is nearly exact at every depth -> add a boundary population of intervals of width 2^-8 and assert that the depth-0 overshoot is already inside the depth-3 budget there; the chain is fixed, so this corpus says nothing about an enclosure of a different expression built from the same three links -> parameterise the suite by the link list and run it over the one-, two- and three-link prefixes
+[detsim:venue.BatchClearing (uniform-price call auction)] accepted=true counts total=300 valid=219 boundary=90 diverse=12 paths=6 | soft-tightness=100% | failed= | syntactic gaps:  | semantic gaps: limits are drawn from an eleven-point integer grid, so no case exercises an epoch whose executable volume changes at a price the grid does not contain -> re-run the generator over a hundredth-of-a-unit grid once the venue's tick size is recorded in the instrument register (D-02); every generated epoch has at most six orders, so the corpus says nothing about the ten-thousand-order epoch the performance budget of Plan B Part 3 section B names -> add a scaling corpus of epochs of 10^2, 10^3 and 10^4 orders and measure, rather than assert, the clearing time; accounts are unique within an epoch, which is what the gateway's admission rule guarantees, so this corpus never exercises an epoch in which one account rests on both sides -> done, in `Venue.Batch.self_cross_witness`: the self-crossing epoch is exhibited there, and `Venue.Gateway.session_never_self_trades` proves the admission rule excludes it
+[detsim:venue.Gateway (epoch order intake)] accepted=true counts total=300 valid=115 boundary=94 diverse=13 paths=13 | soft-tightness=100% | failed= | syntactic gaps: venue/epoch-closed|trades | semantic gaps: every session runs against one pool, so the corpus never exercises two gateways whose epochs are open at the same time -> done for the invariant that matters, in `Venue.PoolSeam`: clearing one pool is proved to leave every other pool's observations unchanged; a three-pool session corpus is still owed for the operational path; sessions are at most eight messages long, so nothing here exercises an epoch accumulating the thousands of orders a live fifteen-minute window would see -> add a scaling corpus of 10^3-message sessions once the gateway's storage representation is fixed, and measure the admission cost per message; messages are applied one at a time in a fixed order, so the corpus does not exercise two messages arriving in the same block -> done, in `Venue.Clock.precedes` and `Venue.Clock.wallClockMutant_disagrees`: the same-block race is decided by block ordering, and the wall-clock implementation is shown to decide it differently
+[detsim:portfolio] suites=9 obligations=24 accepted=true | invariant classes covered: CRITICAL, EVENTUAL, TRANSITION, SAMPLED | failed: 
+[gate] FAILING COMPONENTS (1 of 46): [source-audits]

@@ -1,0 +1,11 @@
+# incremental lake build after the final edits (ABI.lean, Refinement.lean)
+Build completed successfully (9090 jobs).
+exit=0
+warning lines: 5  (replayed from cache for the unchanged pinned file; the authoritative count is clean_build_summary.txt)
+warning: HandoffV3/FreerBridgeChecks.lean:123:5: unused variable `h`
+warning: HandoffV3/FreerBridgeChecks.lean:149:34: unused variable `k`
+warning: HandoffV3/FreerBridgeChecks.lean:153:43: unused variable `k`
+warning: HandoffV3/FreerBridgeChecks.lean:196:29: unused variable `e`
+warning: HandoffV3/FreerBridgeChecks.lean:208:15: unused variable `k`
+
+[promoted-linters] no warning from the 4 promoted linters in the build log

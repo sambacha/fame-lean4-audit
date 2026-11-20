@@ -1,0 +1,131 @@
+file	line	col	kind	argument
+HandoffV3/FreerBridgeChecks.lean	123	5	unusedVar	h
+HandoffV3/FreerBridgeChecks.lean	149	34	unusedVar	k
+HandoffV3/FreerBridgeChecks.lean	153	43	unusedVar	k
+HandoffV3/FreerBridgeChecks.lean	196	29	unusedVar	e
+HandoffV3/FreerBridgeChecks.lean	208	15	unusedVar	k
+RequestProject/ASP/Decisions/Graph.lean	269	61	redundantGrindParam	List.mem_map
+RequestProject/ASP/Decisions/Graph.lean	269	75	redundantGrindParam	List.mem_filter
+RequestProject/ASP/Phase10/Statements.lean	234	8	unusedSimpArg	reconcile_mem_iff
+RequestProject/ASP/Phase11/Desk.lean	161	15	redundantGrindParam	List.map_cons
+RequestProject/ASP/Phase11/Properties.lean	172	36	redundantGrindParam	List.map_cons
+RequestProject/ASP/Properties.lean	115	26	unusedSimpArg	Bool.and_eq_true
+RequestProject/ASP/Properties.lean	143	40	redundantGrindParam	List.map_cons
+RequestProject/ASP/Properties.lean	143	55	redundantGrindParam	List.sum_cons
+RequestProject/AdmissionBranch.lean	113	24	redundantGrindParam	List.map_cons
+RequestProject/AdmissionBranch.lean	113	39	redundantGrindParam	List.sum_cons
+RequestProject/AllocationRefinement.lean	68	97	unusedSimpArg	Nat.sub_zero
+RequestProject/AllocationRefinement.lean	113	91	unusedSimpArg	Nat.sub_zero
+RequestProject/BoundedConflictWidth.lean	228	11	redundantGrindParam	List.map_cons
+RequestProject/BoundedConflictWidth.lean	228	26	redundantGrindParam	List.sum_cons
+RequestProject/CanonicalFormValue.lean	227	37	redundantGrindParam	List.map_append
+RequestProject/CanonicalFormValue.lean	227	54	redundantGrindParam	List.sum_append
+RequestProject/CheapLevelCeiling.lean	174	40	redundantGrindParam	List.map_append
+RequestProject/CheapLevelCeiling.lean	174	57	redundantGrindParam	List.sum_append
+RequestProject/ClipDivisibility.lean	139	22	redundantGrindParam	List.map_cons
+RequestProject/ClipDivisibility.lean	139	37	redundantGrindParam	List.sum_cons
+RequestProject/ClipDivisibility.lean	161	24	redundantGrindParam	List.take_succ_cons
+RequestProject/ClipDivisibility.lean	161	45	redundantGrindParam	List.map_cons
+RequestProject/ClipDivisibility.lean	161	60	redundantGrindParam	List.sum_cons
+RequestProject/ClipDivisibility.lean	172	22	redundantGrindParam	List.map_cons
+RequestProject/ClipDivisibility.lean	172	37	redundantGrindParam	List.sum_cons
+RequestProject/ClipDivisibility.lean	190	12	unusedSimpArg	List.replicate_succ
+RequestProject/ClipDivisibility.lean	190	33	unusedSimpArg	List.flatten_cons
+RequestProject/ClipDivisibility.lean	190	52	unusedSimpArg	List.map_append
+RequestProject/ClipDivisibility.lean	190	69	unusedSimpArg	List.sum_append
+RequestProject/ClipDivisibility.lean	332	12	unusedSimpArg	this
+RequestProject/CollarSlack.lean	146	39	redundantGrindParam	List.map_append
+RequestProject/CollarSlack.lean	146	56	redundantGrindParam	List.sum_append
+RequestProject/CollarSlack.lean	146	113	redundantGrindParam	List.map_cons
+RequestProject/CollarSlack.lean	146	128	redundantGrindParam	List.map_nil
+RequestProject/CollarSlack.lean	146	142	redundantGrindParam	List.sum_cons
+RequestProject/CollarSlack.lean	146	157	redundantGrindParam	List.sum_nil
+RequestProject/ConflictPrice.lean	70	63	redundantGrindParam	List.map_cons
+RequestProject/ConflictPrice.lean	70	78	redundantGrindParam	List.sum_cons
+RequestProject/CoverageAudit.lean	143	200	unusedSimpArg	decide_eq_true_eq
+RequestProject/DeliveryIntegrity.lean	334	35	redundantGrindParam	List.find?_append
+RequestProject/DeliveryIntegrity.lean	437	11	redundantGrindParam	List.map_cons
+RequestProject/DeliveryIntegrity.lean	437	43	redundantGrindParam	List.mem_map
+RequestProject/DeliveryIntegrity.lean	437	69	redundantGrindParam	List.filterMap_cons
+RequestProject/DeliveryIntegrity.lean	437	90	redundantGrindParam	List.lookup_cons
+RequestProject/DownsideOrdering.lean	72	24	redundantGrindParam	List.map_append
+RequestProject/DownsideOrdering.lean	72	41	redundantGrindParam	List.sum_append
+RequestProject/EngineModel.lean	66	21	redundantGrindParam	List.sum_cons
+RequestProject/EngineModel.lean	66	36	redundantGrindParam	List.map_cons
+RequestProject/EpochFeasibility.lean	237	56	unusedSimpArg	max_eq_left_iff
+RequestProject/EventCeilingBracket.lean	81	30	redundantGrindParam	List.mem_cons
+RequestProject/ExactLayerCost.lean	70	31	redundantGrindParam	List.mem_cons
+RequestProject/ExchangeClosure.lean	175	13	redundantGrindParam	List.cons_append
+RequestProject/Fame/Evm/AnyCalldata.lean	43	0	unscopedOption	
+RequestProject/Fame/Evm/Exec.lean	27	0	unscopedOption	
+RequestProject/Fame/Evm/Full/Dispatch.lean	24	0	unscopedOption	
+RequestProject/Fame/Evm/Full/ExecCollateral.lean	30	0	unscopedOption	
+RequestProject/Fame/Evm/Full/ExecDispatch.lean	20	0	unscopedOption	
+RequestProject/Fame/Evm/Full/ExecEscrow.lean	26	0	unscopedOption	
+RequestProject/Fame/Evm/Full/ExecLifecycle.lean	29	0	unscopedOption	
+RequestProject/Fame/Evm/Full/ExecRisk.lean	34	0	unscopedOption	
+RequestProject/Fame/Evm/Full/ExecValue.lean	28	0	unscopedOption	
+RequestProject/Fame/Evm/Full/Gas.lean	36	0	unscopedOption	
+RequestProject/GEXView.lean	130	46	redundantGrindParam	List.map_cons
+RequestProject/GreeksGrounding.lean	190	38	redundantGrindParam	List.map_cons
+RequestProject/GreeksGrounding.lean	190	53	redundantGrindParam	List.sum_cons
+RequestProject/GuardedProperty.lean	81	36	unusedSimpArg	Bool.and_eq_false_iff
+RequestProject/GuardedProperty.lean	81	84	unusedSimpArg	Nat.not_lt
+RequestProject/GuardedProperty.lean	81	96	unusedSimpArg	Nat.le_zero
+RequestProject/GuardedProperty.lean	81	109	unusedSimpArg	List.length_eq_zero_iff
+RequestProject/HardInstanceWidth.lean	204	56	redundantGrindParam	List.mem_flatMap
+RequestProject/HardInstanceWidth.lean	204	74	redundantGrindParam	List.mem_replicate
+RequestProject/MaximinCanonicalForm.lean	60	28	redundantGrindParam	List.map_cons
+RequestProject/MaximinCanonicalForm.lean	60	43	redundantGrindParam	List.sum_cons
+RequestProject/OneMixedEvent.lean	147	27	redundantGrindParam	List.map_append
+RequestProject/OneMixedEvent.lean	147	44	redundantGrindParam	List.sum_append
+RequestProject/OneMixedEvent.lean	147	61	redundantGrindParam	List.map_cons
+RequestProject/OneMixedEvent.lean	147	76	redundantGrindParam	List.map_nil
+RequestProject/OneMixedEvent.lean	147	90	redundantGrindParam	List.sum_cons
+RequestProject/OneMixedEvent.lean	147	105	redundantGrindParam	List.sum_nil
+RequestProject/OneMixedEvent.lean	232	40	redundantGrindParam	List.map_append
+RequestProject/OneMixedEvent.lean	232	57	redundantGrindParam	List.sum_append
+RequestProject/OneMixedEvent.lean	232	74	redundantGrindParam	List.map_cons
+RequestProject/OneMixedEvent.lean	232	89	redundantGrindParam	List.map_nil
+RequestProject/OneMixedEvent.lean	232	103	redundantGrindParam	List.sum_cons
+RequestProject/OneMixedEvent.lean	232	118	redundantGrindParam	List.sum_nil
+RequestProject/OneMixedEvent.lean	450	105	unusedSimpArg	epochTotal
+RequestProject/OrderFreeBound.lean	64	23	redundantGrindParam	List.map_cons
+RequestProject/OrderFreeBound.lean	64	38	redundantGrindParam	List.sum_cons
+RequestProject/OrderFreeBound.lean	82	25	redundantGrindParam	List.map_cons
+RequestProject/OrderFreeBound.lean	82	40	redundantGrindParam	List.sum_cons
+RequestProject/OrderFreeBound.lean	82	55	redundantGrindParam	List.take_succ_cons
+RequestProject/OrderFreeBound.lean	94	34	redundantGrindParam	List.map_cons
+RequestProject/OrderFreeBound.lean	94	49	redundantGrindParam	List.sum_cons
+RequestProject/OrderFreeBound.lean	145	24	unusedSimpArg	List.filter_cons
+RequestProject/OrderFreeBound.lean	145	42	unusedSimpArg	decide_false
+RequestProject/OrderFreeBound.lean	145	56	unusedSimpArg	Bool.false_eq_true
+RequestProject/OrderFreeBound.lean	145	76	unusedSimpArg	if_false
+RequestProject/PartitionReduction.lean	114	11	redundantGrindParam	List.map_cons
+RequestProject/PartitionReduction.lean	114	26	redundantGrindParam	List.sum_cons
+RequestProject/PartitionReduction.lean	166	40	redundantGrindParam	List.map_cons
+RequestProject/PartitionReduction.lean	166	55	redundantGrindParam	List.sum_cons
+RequestProject/PrefixLevelCeiling.lean	326	18	unusedSimpArg	levelCeiling_zero
+RequestProject/Production/Absorption/Core.lean	258	23	unusedSimpArg	not_not
+RequestProject/SignSortedOrder.lean	331	23	unusedSimpArg	or_assoc
+RequestProject/SignUniformTail.lean	166	31	redundantGrindParam	List.map_append
+RequestProject/SignUniformTail.lean	166	48	redundantGrindParam	List.sum_append
+RequestProject/Sim/Hash.lean	66	13	unnecessarySeqFocus	
+RequestProject/Sim/Hash.lean	81	69	unnecessarySeqFocus	
+RequestProject/StabilizationFirst.lean	72	25	redundantGrindParam	List.take_succ_cons
+RequestProject/StabilizationFirst.lean	72	46	redundantGrindParam	List.map_cons
+RequestProject/StabilizationFirst.lean	72	61	redundantGrindParam	List.sum_cons
+RequestProject/StabilizationFirst.lean	135	13	redundantGrindParam	List.cons_append
+RequestProject/StabilizationFirst.lean	169	32	redundantGrindParam	List.cons_append
+RequestProject/TwoMixedEvents.lean	188	24	redundantGrindParam	List.map_cons
+RequestProject/TwoMixedEvents.lean	188	39	redundantGrindParam	List.map_nil
+RequestProject/TwoMixedEvents.lean	188	53	redundantGrindParam	List.sum_cons
+RequestProject/TwoMixedEvents.lean	188	68	redundantGrindParam	List.sum_nil
+RequestProject/TypedEpochProgram.lean	112	15	redundantGrindParam	List.flatMap_cons
+RequestProject/TypedEpochProgram.lean	112	45	redundantGrindParam	List.replicate_succ
+RequestProject/TypedEpochProgram.lean	132	20	unusedSimpArg	List.map_flatMap
+RequestProject/Venue/Recovery.lean	332	45	unusedVar	hnet
+RequestProject/Venue/TaskTests.lean	176	19	unusedSimpArg	hc
+RequestProject/Venue/TaskTests.lean	179	12	unusedSimpArg	hc
+RequestProject/WorstBucketPolicy.lean	382	86	unusedSimpArg	Matrix.cons_val
+RequestProject/WorstBucketPolicy.lean	395	61	unusedSimpArg	Matrix.cons_val

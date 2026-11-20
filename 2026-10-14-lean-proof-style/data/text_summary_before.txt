@@ -1,0 +1,16 @@
+Lean files: 1078   lines: 331341
+metric               rule        count  files  description
+sorry                R4              0      0  `sorry` tokens in code (kernel audit is authoritative)
+axiom_decl           R4              0      0  `axiom` declarations
+implemented_by       R4/R18          0      0  `@[implemented_by]` attributes
+native_decide        R4            122     44  `native_decide` uses (widen the trust footprint)
+erw                  R1a/R16         0      0  `erw` uses (missing-API smell)
+trailing_rfl_simp    R1a/R16        52     27  `rfl` closing straight after `simp` (simp under-closed: missing-API smell) [heuristic]
+trailing_rfl_rw      R1a/R16       171     97  `rfl` closing straight after `rw` (usually legitimate; informational) [heuristic]
+nonterminal_simp     R10b          101     52  bare `simp`/`simp_all` followed by a rigid tactic (next line or `;`) [proxy for linter.flexible] [heuristic]
+global_fact          R22             0      0  global `instance ... : Fact ...`
+irreducible          R17             0      0  `irreducible_def` / `@[irreducible]` / `attribute [irreducible]`
+untyped_have         R7           2316    481  `have h := term` without a stated type [heuristic]
+upper_theorem_name   R26            96     16  theorem/lemma whose last name component starts upper-case
+long_proof           R13            32     26  declarations longer than 150 lines
+long_file            R13             7      7  files longer than 1000 lines

@@ -1,0 +1,44 @@
+# Serial A/B timings, one host (8 vCPU, 64 GB), `lake env lean <file>` against prebuilt dependencies.
+# wall/user in seconds. "interleaved" = before/after alternated within each rep; otherwise blocked (3 before, 3 after).
+change	module	side	run	wall_s	user_s	order	note
+I1	RequestProject.Venue.SeamCorpus	before	1	296.0	274.3	blocked	original HEAD 6fbb26d
+I1	RequestProject.Venue.SeamCorpus	before	2	287.5	265.8	blocked
+I1	RequestProject.Venue.SeamCorpus	before	3	286.9	265.1	blocked
+I1	RequestProject.Venue.SeamCorpus	after	1	151.0	137.5	blocked	runs carried -Dtrace.profiler (adds a little)
+I1	RequestProject.Venue.SeamCorpus	after	2	147.8	135.2	blocked
+I1	RequestProject.Venue.SeamCorpus	after	3	146.9	134.1	blocked
+I2	RequestProject.ASP.Phase7.CallV2	before	1	48.8	84.2	blocked	tactic bodies run in parallel: user > wall
+I2	RequestProject.ASP.Phase7.CallV2	before	2	47.4	84.8	blocked
+I2	RequestProject.ASP.Phase7.CallV2	before	3	46.9	84.2	blocked
+I2	RequestProject.ASP.Phase7.CallV2	after	1	8.2	8.2	blocked
+I2	RequestProject.ASP.Phase7.CallV2	after	2	7.8	7.9	blocked
+I2	RequestProject.ASP.Phase7.CallV2	after	3	7.7	7.7	blocked
+I3	RequestProject.Audit.NumericFootprint	before	1	237.7	-	blocked	user not recorded (wall-only timer)
+I3	RequestProject.Audit.NumericFootprint	before	2	235.6	-	blocked
+I3	RequestProject.Audit.NumericFootprint	before	3	248.5	-	blocked
+I3	RequestProject.Audit.NumericFootprint	after	1	16.5	12.5	blocked
+I3	RequestProject.Audit.NumericFootprint	after	2	16.2	12.7	blocked
+I3	RequestProject.Audit.NumericFootprint	after	3	16.6	12.8	blocked
+I3	RequestProject.Audit.NumericFootprint	before	1	242.3	233.5	interleaved
+I3	RequestProject.Audit.NumericFootprint	after	1	17.7	13.4	interleaved
+I3	RequestProject.Audit.NumericFootprint	before	2	255.7	246.5	interleaved
+I3	RequestProject.Audit.NumericFootprint	after	2	18.8	14.1	interleaved
+I3	RequestProject.Audit.NumericFootprint	before	3	249.7	241.2	interleaved
+I3	RequestProject.Audit.NumericFootprint	after	3	17.7	13.5	interleaved
+I3	RequestProject.Audit.ReviewFindings	before	1	252.6	-	blocked
+I3	RequestProject.Audit.ReviewFindings	before	2	246.5	-	blocked
+I3	RequestProject.Audit.ReviewFindings	before	3	244.1	-	blocked
+I3	RequestProject.Audit.ReviewFindings	after	1	13.5	10.3	blocked
+I3	RequestProject.Audit.ReviewFindings	after	2	13.3	10.1	blocked
+I3	RequestProject.Audit.ReviewFindings	after	3	13.6	9.9	blocked
+I3	RequestProject.PaperTests.Runner	before	1	246.6	-	blocked	CoverageSnapshot .olean rebuilt from the original source
+I3	RequestProject.PaperTests.Runner	before	2	241.7	-	blocked
+I3	RequestProject.PaperTests.Runner	before	3	250.9	-	blocked
+I3	RequestProject.PaperTests.Runner	after	1	15.0	10.8	blocked
+I3	RequestProject.PaperTests.Runner	after	2	14.5	10.8	blocked
+I3	RequestProject.PaperTests.Runner	after	3	14.7	10.8	blocked
+M1	scratch: 1 vs 3 identical decide +kernel theorems	one	1-3	8.9/8.5/8.5	7.7/7.4/7.5	blocked	kernel checks within a file are sequential
+M1	scratch: 1 vs 3 identical decide +kernel theorems	three	1-3	22.1/22.5/22.2	20.8/21.1/20.8	blocked
+F1	scratch: fiftyCases count + preflight	import-only	1-3	13.0/10.6/10.9	-	blocked
+F1	scratch: fiftyCases count + preflight	separate	1-3	87.6/85.9/89.1	78.3/77.4/79.3	blocked
+F1	scratch: fiftyCases count + preflight	fused	1-3	63.0/63.5/63.6	55.3/55.5/55.8	blocked

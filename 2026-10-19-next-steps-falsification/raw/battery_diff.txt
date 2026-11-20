@@ -1,0 +1,100 @@
+# scripts/run_checks.sh --source-only: baseline (unmodified tree, separate worktree) vs this work.
+# One run per side on 2026-10-19, same machine. FAIL lines only, sorted, de-duplicated.
+#
+# Baseline FAIL count: 36 (34 excluding the two worktree artefacts below). After this work (battery run): 35.
+# After the two follow-up fixes below: 33 (each fix re-run individually, not via a full battery re-run).
+#
+# Present only in the baseline (NOT attributable to this work; worktree artefacts):
+#   check_manifest_drift.py --verify-resolvable  (the baseline worktree had no .lake/packages checkout)
+#   v3_kernel_mutants.py --selftest              (needs a built tree; the baseline worktree was unbuilt)
+#   Both fail again when re-run in the baseline worktree and pass in the built main tree.
+#
+# Present only after this work, then fixed:
+#   audit_property_registry.py  three new `#guard` lines in RequestProject/Venue/CanonicalProjection.lean
+#                               had no registry rows. Fixed: rows compile-cmap3-roundtrip-edge,
+#                               compile-cmap1-edge-bounded, compile-cmap1-time-overflow in
+#                               property_registry.json. The audit now exits 0.
+#
+# Failing in both, finding list changed by this work, then fixed:
+#   asp_console.py --selftest   baseline: check_beta_conjectures.py and check_halt_drill.py were in no
+#                               subject group; this work added check_leverage_conjectures.py to the
+#                               list. Fixed for all three (keys `_conjectures` in `registry`,
+#                               `halt_drill` in `readiness`). The selftest now reports 0 findings and
+#                               scripts/test_asp_console.py passes (44 tests).
+#
+# The remaining FAIL lines are common to both runs (missing external tools or pre-existing gaps).
+#
+## baseline FAIL lines
+FAIL  bash tooling/cvp/check_all.sh
+FAIL  python3 scripts/asp_console.py --selftest
+FAIL  python3 scripts/audit_doc_currency.py
+FAIL  python3 scripts/audit_test_census.py --check
+FAIL  python3 scripts/build_collision_register.py --check
+FAIL  python3 scripts/build_spec_omnibus.py --check
+FAIL  python3 scripts/check_artifact_schemas.py
+FAIL  python3 scripts/check_artifact_schemas.py --selftest
+FAIL  python3 scripts/check_battery_skip_census.py
+FAIL  python3 scripts/check_battery_skip_census.py --selftest
+FAIL  python3 scripts/check_citation.py --check
+FAIL  python3 scripts/check_collision_register.py
+FAIL  python3 scripts/check_collision_register.py --selftest
+FAIL  python3 scripts/check_commit_bypass.py
+FAIL  python3 scripts/check_demo_claims.py
+FAIL  python3 scripts/check_demo_claims.py --selftest
+FAIL  python3 scripts/check_hooks_location.py
+FAIL  python3 scripts/check_manifest_drift.py --verify-resolvable
+FAIL  python3 scripts/check_session_artifacts.py
+FAIL  python3 scripts/check_session_artifacts.py --selftest
+FAIL  python3 scripts/check_signer_dates.py
+FAIL  python3 scripts/check_signing_evidence.py --sweep
+FAIL  python3 scripts/check_signing_evidence.py --sweep --selftest
+FAIL  python3 scripts/decision_map/run_decision_map.py --check
+FAIL  python3 scripts/duke_style_audit.py
+FAIL  python3 scripts/extract_properties.py --check
+FAIL  python3 scripts/generate_counts.py --check
+FAIL  python3 scripts/generate_counts.py --selftest
+FAIL  python3 scripts/handover_baseline.py --check
+FAIL  python3 scripts/ica_audit.py --check
+FAIL  python3 scripts/regen.py --check
+FAIL  python3 scripts/rsv_audit.py --check
+FAIL  python3 scripts/rsv_audit.py --selftest
+FAIL  python3 scripts/rsv_probes.py --check
+FAIL  python3 scripts/run_unit_suites.py scripts/test_api_surface.py scripts/test_asp_campaign_counts.py scripts/test_asp_console.py scripts/test_asp_decision_dag.py scripts/test_asp_deployment_config.py scripts/test_asp_golden_provenance.py scripts/test_asp_local_loop.py scripts/test_asp_node_surface.py scripts/test_asp_operator_node.py scripts/test_asp_register_reconciliation.py scripts/test_asp_units_and_time.py scripts/test_atomic_io.py scripts/test_axiom_budget.py scripts/test_battery_skip_census.py scripts/test_bootstrap_layer0.py scripts/test_carried_assumption_evidence.py scripts/test_cd_gate.py scripts/test_check_beta_bar.py scripts/test_check_naming.py scripts/test_check_orphan_coverage.py scripts/test_check_sp_nonregression.py scripts/test_claim_seeds.py scripts/test_claim_traceability.py scripts/test_conditionality_index.py scripts/test_counts.py scripts/test_coverage_gate.py scripts/test_decision_paths.py scripts/test_delivery_integrity.py scripts/test_design_review_checklist.py scripts/test_detsim_sqlite.py scripts/test_dev_env_setup.py scripts/test_differential.py scripts/test_doc_currency.py scripts/test_environment_gates.py scripts/test_gate7_evidence.py scripts/test_gate_honesty.py scripts/test_generated_artifacts.py scripts/test_guarded_properties.py scripts/test_hedged_band_search.py scripts/test_install_foundry.py scripts/test_lmm_manifest.py scripts/test_manifest_drift.py scripts/test_paper_traceability.py scripts/test_parameter_thresholds.py scripts/test_pol_manifest.py scripts/test_pol_suite_deployment.py scripts/test_pol_suite_discrimination.py scripts/test_pol_suite_manifest.py scripts/test_probe_capacity_dependence.py scripts/test_process_group.py scripts/test_process_waits.py scripts/test_property_registry_schema.py scripts/test_redeploy_runbook.py scripts/test_regen.py scripts/test_repo_hygiene.py scripts/test_requirement_disposition.py scripts/test_requirement_traceability.py scripts/test_roadmap_runtime.py scripts/test_run_seam_differential.py scripts/test_run_unit_suites.py scripts/test_sbom.py scripts/test_script_coverage.py scripts/test_shadow_ops.py scripts/test_signoff_checks_model.py scripts/test_source_path_references.py scripts/test_tier0_handoff_models.py scripts/test_token_api_contract.py scripts/test_token_manifest.py scripts/test_venue_core_readiness.py test_reporting/test_system.py
+FAIL  python3 scripts/v3_kernel_mutants.py --selftest
+
+## after-this-work FAIL lines (battery run, before the two follow-up fixes)
+FAIL  bash tooling/cvp/check_all.sh
+FAIL  python3 scripts/asp_console.py --selftest
+FAIL  python3 scripts/audit_doc_currency.py
+FAIL  python3 scripts/audit_property_registry.py
+FAIL  python3 scripts/audit_test_census.py --check
+FAIL  python3 scripts/build_collision_register.py --check
+FAIL  python3 scripts/build_spec_omnibus.py --check
+FAIL  python3 scripts/check_artifact_schemas.py
+FAIL  python3 scripts/check_artifact_schemas.py --selftest
+FAIL  python3 scripts/check_battery_skip_census.py
+FAIL  python3 scripts/check_battery_skip_census.py --selftest
+FAIL  python3 scripts/check_citation.py --check
+FAIL  python3 scripts/check_collision_register.py
+FAIL  python3 scripts/check_collision_register.py --selftest
+FAIL  python3 scripts/check_commit_bypass.py
+FAIL  python3 scripts/check_demo_claims.py
+FAIL  python3 scripts/check_demo_claims.py --selftest
+FAIL  python3 scripts/check_hooks_location.py
+FAIL  python3 scripts/check_session_artifacts.py
+FAIL  python3 scripts/check_session_artifacts.py --selftest
+FAIL  python3 scripts/check_signer_dates.py
+FAIL  python3 scripts/check_signing_evidence.py --sweep
+FAIL  python3 scripts/check_signing_evidence.py --sweep --selftest
+FAIL  python3 scripts/decision_map/run_decision_map.py --check
+FAIL  python3 scripts/duke_style_audit.py
+FAIL  python3 scripts/extract_properties.py --check
+FAIL  python3 scripts/generate_counts.py --check
+FAIL  python3 scripts/generate_counts.py --selftest
+FAIL  python3 scripts/handover_baseline.py --check
+FAIL  python3 scripts/ica_audit.py --check
+FAIL  python3 scripts/regen.py --check
+FAIL  python3 scripts/rsv_audit.py --check
+FAIL  python3 scripts/rsv_audit.py --selftest
+FAIL  python3 scripts/rsv_probes.py --check
+FAIL  python3 scripts/run_unit_suites.py scripts/test_api_surface.py scripts/test_asp_campaign_counts.py scripts/test_asp_console.py scripts/test_asp_decision_dag.py scripts/test_asp_deployment_config.py scripts/test_asp_golden_provenance.py scripts/test_asp_local_loop.py scripts/test_asp_node_surface.py scripts/test_asp_operator_node.py scripts/test_asp_register_reconciliation.py scripts/test_asp_units_and_time.py scripts/test_atomic_io.py scripts/test_axiom_budget.py scripts/test_battery_skip_census.py scripts/test_bootstrap_layer0.py scripts/test_carried_assumption_evidence.py scripts/test_cd_gate.py scripts/test_check_beta_bar.py scripts/test_check_naming.py scripts/test_check_orphan_coverage.py scripts/test_check_sp_nonregression.py scripts/test_claim_seeds.py scripts/test_claim_traceability.py scripts/test_conditionality_index.py scripts/test_counts.py scripts/test_coverage_gate.py scripts/test_decision_paths.py scripts/test_delivery_integrity.py scripts/test_design_review_checklist.py scripts/test_detsim_sqlite.py scripts/test_dev_env_setup.py scripts/test_differential.py scripts/test_doc_currency.py scripts/test_environment_gates.py scripts/test_gate7_evidence.py scripts/test_gate_honesty.py scripts/test_generated_artifacts.py scripts/test_guarded_properties.py scripts/test_hedged_band_search.py scripts/test_install_foundry.py scripts/test_lmm_manifest.py scripts/test_manifest_drift.py scripts/test_paper_traceability.py scripts/test_parameter_thresholds.py scripts/test_pol_manifest.py scripts/test_pol_suite_deployment.py scripts/test_pol_suite_discrimination.py scripts/test_pol_suite_manifest.py scripts/test_probe_capacity_dependence.py scripts/test_process_group.py scripts/test_process_waits.py scripts/test_property_registry_schema.py scripts/test_redeploy_runbook.py scripts/test_regen.py scripts/test_repo_hygiene.py scripts/test_requirement_disposition.py scripts/test_requirement_traceability.py scripts/test_roadmap_runtime.py scripts/test_run_seam_differential.py scripts/test_run_unit_suites.py scripts/test_sbom.py scripts/test_script_coverage.py scripts/test_shadow_ops.py scripts/test_signoff_checks_model.py scripts/test_source_path_references.py scripts/test_tier0_handoff_models.py scripts/test_token_api_contract.py scripts/test_token_manifest.py scripts/test_venue_core_readiness.py test_reporting/test_system.py

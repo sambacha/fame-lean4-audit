@@ -1,0 +1,343 @@
+PASS  python3 scripts/check_strict_tooling_env.py --selftest
+PASS  python3 scripts/check_strict_tooling_env.py
+FAIL  python3 scripts/check_manifest_drift.py
+      MANIFEST DRIFT CHECK FAILED
+       - mathlib: input revision 'v4.28.0' != '8f9d9cff6bd728b17a24e163c9402775d9e6a365'
+       - plausible: input revision 'main' != '55c8532eb21ec9f6d565d51d96b8ca50bd1fbef3'
+FAIL  python3 scripts/check_manifest_drift.py --verify-committed
+      Manifest committed check: the git index: 9 rows, 0 of them path rows
+      MANIFEST DRIFT CHECK FAILED
+       - mathlib: input revision 'v4.28.0' != '8f9d9cff6bd728b17a24e163c9402775d9e6a365'
+       - plausible: input revision 'main' != '55c8532eb21ec9f6d565d51d96b8ca50bd1fbef3'
+PASS  python3 scripts/check_exemptions.py --selftest
+FAIL  python3 scripts/check_exemptions.py
+      EXEMPTIONS REGISTRY CHECK FAILED
+       - dca3f63fe878894a673b55edb68231c1e1135f65: no such commit in this history (use 'unavailable-squashed-history' when the sha cannot be named)
+PASS  python3 scripts/check_commit_bypass.py --selftest
+FAIL  python3 scripts/check_commit_bypass.py
+      COMMIT BYPASS CHECK FAILED
+       - dca3f63fe878894a673b55edb68231c1e1135f65: recorded as a bypass but not a commit in this range
+       - 347f3895e9ad: the tip does not pass the pre-commit checks (manifest drift, repository hygiene) and carries no Conformance-Bypass trailer
+FAIL  python3 scripts/check_repo_hygiene.py --selftest
+       - tracked build output — scripts/__pycache__/test_regen.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_repo_hygiene.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_requirement_disposition.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_requirement_traceability.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_roadmap_runtime.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_script_coverage.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_source_path_references.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_token_api_contract.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_token_manifest.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_venue_core_readiness.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/venue_core_readiness.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/deck/__pycache__/__init__.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/deck/simulations/__pycache__/__init__.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — test_reporting/__pycache__/history_db.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — test_reporting/__pycache__/test_system.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+FAIL  python3 scripts/check_repo_hygiene.py
+       - tracked build output — scripts/__pycache__/test_regen.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_repo_hygiene.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_requirement_disposition.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_requirement_traceability.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_roadmap_runtime.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_script_coverage.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_source_path_references.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_token_api_contract.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_token_manifest.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/test_venue_core_readiness.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/__pycache__/venue_core_readiness.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/deck/__pycache__/__init__.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — scripts/deck/simulations/__pycache__/__init__.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — test_reporting/__pycache__/history_db.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+       - tracked build output — test_reporting/__pycache__/test_system.cpython-311.pyc: Python bytecode is a build output of whichever interpreter ran last
+FAIL  python3 scripts/check_manifest_drift.py --verify-local
+      MANIFEST DRIFT CHECK FAILED
+       - mathlib: input revision 'v4.28.0' != '8f9d9cff6bd728b17a24e163c9402775d9e6a365'
+       - plausible: input revision 'main' != '55c8532eb21ec9f6d565d51d96b8ca50bd1fbef3'
+FAIL  python3 scripts/check_manifest_drift.py --verify-remote --allow-offline
+      Manifest remote check: mathlib: v4.28.0 still resolves to 8f9d9cff6bd7 upstream
+      Manifest remote check: LeanSearchClient: inherited row; upstream main has advanced to 95e037bfdc31, the manifest pins c5d5b8fe6e51 and Lake resolves that
+      Manifest remote check: importGraph: inherited row; upstream main has advanced to f8e94c241111, the manifest pins 85b59af46828 and Lake resolves that
+      Manifest remote check: proofwidgets: v0.0.87 still resolves to be3b2e63b1bb upstream
+      Manifest remote check: aesop: inherited row; upstream master has advanced to 75d936c7af16, the manifest pins f642a64c76df and Lake resolves that
+      Manifest remote check: Qq: inherited row; upstream master has advanced to 786b7acdca7e, the manifest pins b8f98e9087e0 and Lake resolves that
+      Manifest remote check: batteries: inherited row; upstream main has advanced to a2ed96bcf8c9, the manifest pins 495c008c3e3f and Lake resolves that
+      Manifest remote check: Cli: v4.28.0 still resolves to 4f10f47646cb upstream
+      MANIFEST DRIFT CHECK FAILED
+       - mathlib: input revision 'v4.28.0' != '8f9d9cff6bd728b17a24e163c9402775d9e6a365'
+       - plausible: input revision 'main' != '55c8532eb21ec9f6d565d51d96b8ca50bd1fbef3'
+       - plausible: 'main' now points at e50948299c4dc4a4c21b1c34b6a6a4fddc19f912 upstream, manifest pins 55c8532eb21ec9f6d565d51d96b8ca50bd1fbef3
+PASS  python3 scripts/check_manifest_drift.py --refuse-vendored
+PASS  python3 scripts/check_manifest_drift.py --verify-resolvable
+PASS  python3 scripts/check_sentinel_exclusions.py --selftest
+PASS  python3 scripts/check_sentinel_exclusions.py
+PASS  python3 scripts/check_a_xx_canonical.py --selftest
+PASS  python3 scripts/check_a_xx_canonical.py
+PASS  python3 scripts/check_invariant_register.py --selftest
+PASS  python3 scripts/check_invariant_register.py
+PASS  python3 scripts/check_venue_tasks.py --selftest
+PASS  python3 scripts/check_venue_tasks.py
+FAIL  python3 scripts/build_task_register.py --check
+      docs/registers/TASKS.md is not what scripts/build_task_register.py would write; regenerate it
+FAIL  python3 scripts/check_task_register.py --selftest
+      rejected as it should be — a Part A row deleted
+      rejected as it should be — a Part B row deleted
+      rejected as it should be — an unresolved token
+      rejected as it should be — a sentinel row
+      SELFTEST FAILED — the tracked tree does not pass its own check
+FAIL  python3 scripts/check_task_register.py
+      TASK REGISTER CHECK FAILED
+       - docs/registers/TASKS.md is not what scripts/build_task_register.py would write; regenerate it
+PASS  python3 scripts/check_sentinel_register_collision.py --selftest
+PASS  python3 scripts/check_sentinel_register_collision.py
+PASS  python3 scripts/build_collision_register.py --check
+PASS  python3 scripts/check_collision_register.py --selftest
+PASS  python3 scripts/check_collision_register.py
+PASS  python3 scripts/build_canonical_types.py --check
+PASS  python3 scripts/check_canonical_types.py --selftest
+PASS  python3 scripts/check_canonical_types.py
+FAIL  python3 scripts/build_claim_index.py --check
+      docs/registers/CLAIMS.md is not what scripts/build_claim_index.py would write; regenerate it
+FAIL  python3 scripts/check_claim_index.py --selftest
+      rejected as it should be — a claim with no row
+      rejected as it should be — an [UNBACKED] row
+      rejected as it should be — a PROSE-ONLY row with no rationale
+      SELFTEST FAILED — the tracked tree does not pass its own check
+FAIL  python3 scripts/check_claim_index.py
+      CLAIM INDEX CHECK FAILED
+       - docs/registers/CLAIMS.md is not what scripts/build_claim_index.py would write; regenerate it
+PASS  python3 scripts/build_requirement_registers.py --check
+PASS  python3 scripts/check_requirement_registers.py --selftest
+PASS  python3 scripts/check_requirement_registers.py
+PASS  python3 scripts/build_seam_register.py --check
+PASS  python3 scripts/check_seam_differentials.py --selftest
+PASS  python3 scripts/check_seam_differentials.py
+SKIP  python3 scripts/run_seam_differential.py --check (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+PASS  python3 scripts/check_source_headers.py --selftest
+PASS  python3 scripts/check_source_headers.py
+PASS  python3 scripts/check_no_code_sorry.py --selftest
+PASS  python3 scripts/check_no_code_sorry.py
+PASS  python3 scripts/check_no_axioms.py --selftest
+PASS  python3 scripts/check_no_axioms.py
+PASS  python3 scripts/check_review_status_reconciliation.py --selftest
+PASS  python3 scripts/check_review_status_reconciliation.py
+PASS  python3 scripts/check_claim_seeds.py --selftest
+PASS  python3 scripts/check_claim_seeds.py
+PASS  python3 scripts/check_script_coverage.py --selftest
+PASS  python3 scripts/check_script_coverage.py
+PASS  python3 scripts/asp_console.py --selftest
+FAIL  python3 -m unittest scripts/test_api_surface.py scripts/test_asp_campaign_counts.py scripts/test_asp_console.py scripts/test_asp_decision_dag.py scripts/test_asp_deployment_config.py scripts/test_asp_golden_provenance.py scripts/test_asp_local_loop.py scripts/test_asp_node_surface.py scripts/test_asp_operator_node.py scripts/test_asp_register_reconciliation.py scripts/test_asp_units_and_time.py scripts/test_axiom_budget.py scripts/test_battery_skip_census.py scripts/test_carried_assumption_evidence.py scripts/test_check_naming.py scripts/test_claim_seeds.py scripts/test_claim_traceability.py scripts/test_conditionality_index.py scripts/test_counts.py scripts/test_coverage_gate.py scripts/test_delivery_integrity.py scripts/test_design_review_checklist.py scripts/test_dev_env_setup.py scripts/test_differential.py scripts/test_doc_currency.py scripts/test_environment_gates.py scripts/test_gate7_evidence.py scripts/test_gate_honesty.py scripts/test_generated_artifacts.py scripts/test_guarded_properties.py scripts/test_install_foundry.py scripts/test_lmm_manifest.py scripts/test_manifest_drift.py scripts/test_paper_traceability.py scripts/test_parameter_thresholds.py scripts/test_pol_manifest.py scripts/test_pol_suite_deployment.py scripts/test_pol_suite_discrimination.py scripts/test_pol_suite_manifest.py scripts/test_property_registry_schema.py scripts/test_regen.py scripts/test_repo_hygiene.py scripts/test_requirement_disposition.py scripts/test_requirement_traceability.py scripts/test_roadmap_runtime.py scripts/test_script_coverage.py scripts/test_source_path_references.py scripts/test_token_api_contract.py scripts/test_token_manifest.py scripts/test_venue_core_readiness.py test_reporting/test_system.py
+      Conditionality selftest passed: the check rejects a pinned result that loses its hypothesis, a pinned declaration that disappears, an empty classification and a marker that no longer occurs; and markers in a conclusion or under a negation are not read as assumptions.
+      Counts selftest passed: the check rejects an annotation that disagrees with the tree, an unknown count name, prose that has drifted from its annotation, and a tree with no annotation at all.
+      Design-review checklist selftest passed: the check rejects a missing principle, a dropped instance, a renamed declaration, a row with no counterexample, and a section with no checklist items.
+      Guarded property audit self-test passed: 19 cases.
+      LMM enforcement lint selftest passed: 8 violations rejected, the clean fixture accepted.
+      paper-traceability selftest passed: 8 mutations, all rejected
+      POL rate lint selftest OK
+      POL config lint passed (24 Lean sources, 25 deployment sources, 1 declared exception).
+      POL config lint selftest passed.
+      POL suite TypeScript lint passed (11 sources).
+      POL suite TypeScript lint selftest passed.
+      audit_pol_suite_discrimination selftest: 5 negative controls rejected as required
+      Requirement-disposition selftest passed: the check rejects a dropped requirement, an invented one, an unknown disposition, a closed row with no or unreal evidence, and a blocked row that either claims evidence or names nothing it waits on.
+      Source path reference selftest passed: 4 mutations rejected, and the committed tree passes.
+      Token API contract selftest passed: 8 mutations rejected.
+PASS  python3 scripts/lint_lean_docs.py
+PASS  python3 scripts/duke_style_audit.py --selftest
+PASS  python3 scripts/duke_style_audit.py
+PASS  python3 scripts/audit_doc_currency.py --selftest
+PASS  python3 scripts/audit_doc_currency.py
+PASS  python3 scripts/check_source_path_references.py --selftest
+PASS  python3 scripts/check_source_path_references.py
+PASS  python3 scripts/check_solidity_reentrancy_lock.py --selftest
+PASS  python3 scripts/check_solidity_reentrancy_lock.py
+PASS  python3 scripts/check_sdk_contract.py --selftest
+PASS  python3 scripts/check_sdk_contract.py
+PASS  python3 scripts/check_token_api_contract.py --selftest
+PASS  python3 scripts/check_token_api_contract.py
+PASS  python3 scripts/check_axiom_budget.py --selftest
+PASS  python3 scripts/check_axiom_budget.py
+PASS  python3 scripts/audit_property_registry.py
+PASS  python3 scripts/check_polya_ledger.py --selftest
+PASS  python3 scripts/check_polya_ledger.py
+PASS  python3 scripts/check_evidence_grades.py --selftest
+PASS  python3 scripts/check_evidence_grades.py
+PASS  python3 scripts/audit_guarded_properties.py --self-test
+PASS  python3 scripts/audit_guarded_properties.py
+PASS  python3 scripts/audit_suite_meaning.py --selftest
+PASS  python3 scripts/audit_suite_meaning.py
+PASS  python3 scripts/audit_token_manifest.py
+PASS  python3 scripts/audit_pol_manifest.py
+PASS  python3 scripts/audit_pol_suite_manifest.py
+PASS  python3 scripts/check_pol_rate_lint.py
+PASS  python3 scripts/check_pol_suite_ts_lint.py --selftest
+PASS  python3 scripts/check_pol_suite_ts_lint.py
+PASS  python3 scripts/check_pol_config_lint.py --selftest
+PASS  python3 scripts/check_pol_config_lint.py
+PASS  python3 scripts/audit_pol_suite_deployment.py --selftest
+PASS  python3 scripts/audit_pol_suite_deployment.py
+PASS  python3 scripts/audit_pol_suite_discrimination.py --selftest
+PASS  python3 scripts/audit_pol_suite_discrimination.py
+PASS  python3 scripts/audit_lmm_manifest.py --selftest
+PASS  python3 scripts/audit_lmm_manifest.py
+PASS  python3 scripts/check_lmm_enforcement_lint.py --selftest
+PASS  python3 scripts/check_lmm_enforcement_lint.py
+PASS  python3 scripts/check_lmm_api_contract.py --selftest
+PASS  python3 scripts/check_lmm_api_contract.py
+PASS  python3 scripts/check_api_route_parity.py --selftest
+PASS  python3 scripts/check_api_route_parity.py
+PASS  python3 scripts/check_api_security_model.py --selftest
+PASS  python3 scripts/check_api_security_model.py
+PASS  python3 scripts/check_api_error_model.py --selftest
+PASS  python3 scripts/check_api_error_model.py
+PASS  python3 scripts/check_api_principal_model.py --selftest
+PASS  python3 scripts/check_api_principal_model.py
+PASS  python3 scripts/check_api_generator_mapping.py --selftest
+PASS  python3 scripts/check_api_generator_mapping.py
+PASS  python3 scripts/check_api_gateway_lint.py --selftest
+PASS  python3 scripts/check_api_gateway_lint.py
+PASS  python3 scripts/audit_flywheel_agentic_manifest.py --selftest
+PASS  python3 scripts/audit_flywheel_agentic_manifest.py
+PASS  python3 scripts/check_flywheel_agentic_enforcement_lint.py --selftest
+PASS  python3 scripts/check_flywheel_agentic_enforcement_lint.py
+PASS  python3 scripts/check_detsim_headers.py
+PASS  python3 scripts/migrate_property_registry_aliases.py --selftest
+PASS  python3 scripts/migrate_property_registry_aliases.py --check
+PASS  python3 scripts/differential_corpus.py --selftest
+PASS  python3 scripts/run_differential.py --selftest
+SKIP  python3 scripts/run_differential.py (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+PASS  python3 scripts/extract_properties.py --check
+PASS  python3 scripts/generate_properties_tex.py --check
+PASS  python3 scripts/check_reporting_tooling.py --selftest
+PASS  python3 scripts/check_reporting_tooling.py
+PASS  python3 scripts/audit_lemma_test_coverage.py --selftest
+PASS  python3 scripts/audit_lemma_test_coverage.py
+PASS  python3 scripts/check_subsingleton_evidence.py --selftest
+PASS  python3 scripts/check_subsingleton_evidence.py
+PASS  python3 scripts/check_discipline_tags.py --selftest
+PASS  python3 scripts/check_discipline_tags.py
+PASS  python3 scripts/check_naming.py --selftest
+PASS  python3 scripts/check_naming.py
+PASS  python3 scripts/generate_requirement_traceability.py --check
+PASS  python3 scripts/matching_dependency_closure.py
+PASS  python3 scripts/audit_carried_assumption_evidence.py --selftest
+PASS  python3 scripts/audit_carried_assumption_evidence.py
+PASS  python3 scripts/generate_paper_traceability.py --selftest
+PASS  python3 scripts/generate_paper_traceability.py --check
+PASS  python3 scripts/generate_claim_traceability.py --selftest
+PASS  python3 scripts/generate_claim_traceability.py --check
+PASS  python3 scripts/generate_conditionality_index.py --selftest
+PASS  python3 scripts/generate_conditionality_index.py --check
+PASS  python3 scripts/generate_counts.py --selftest
+PASS  python3 scripts/generate_counts.py --check
+PASS  python3 scripts/generate_api_routes.py --check
+PASS  python3 scripts/regen.py --selftest
+FAIL  python3 scripts/regen.py --check
+      ok    scripts/generate_properties_tex.py --check
+      ok    scripts/generate_requirement_traceability.py --check
+      ok    scripts/generate_paper_traceability.py --check
+      ok    scripts/generate_claim_traceability.py --check
+      ok    scripts/generate_conditionality_index.py --check
+      ok    scripts/generate_counts.py --check
+      ok    scripts/generate_api_routes.py --check
+      ok    scripts/generate_pool_table.py --check
+      ok    scripts/generate_asp_client_refusals.py --check
+      SKIP  scripts/generate_roadmap_evidence.py (needs a built tree; rerun with --post-build)
+      REGENERATION CHECK FAILED
+       - build_task_register.py (--check): exit status 1
+            docs/registers/TASKS.md is not what scripts/build_task_register.py would write; regenerate it
+       - build_claim_index.py (--check): exit status 1
+            docs/registers/CLAIMS.md is not what scripts/build_claim_index.py would write; regenerate it
+PASS  python3 scripts/check_design_review_checklist.py --selftest
+PASS  python3 scripts/check_design_review_checklist.py
+PASS  python3 scripts/check_requirement_disposition.py --selftest
+PASS  python3 scripts/check_requirement_disposition.py
+PASS  python3 scripts/venue_core_readiness.py
+PASS  python3 scripts/check_gate7_evidence.py
+PASS  python3 scripts/live_order_readiness.py
+PASS  python3 scripts/check_asp_encoding_cross.py
+PASS  python3 scripts/check_asp_contract_build.py
+PASS  python3 scripts/check_asp_operator_encoder.py
+PASS  node --test services/asp-operator/test/abi.test.mjs services/asp-operator/test/alerts.test.mjs services/asp-operator/test/cli.test.mjs services/asp-operator/test/config.test.mjs services/asp-operator/test/intake.test.mjs services/asp-operator/test/intakeproperties.test.mjs services/asp-operator/test/journal.test.mjs services/asp-operator/test/keccak.test.mjs services/asp-operator/test/logging.test.mjs services/asp-operator/test/metrics.test.mjs services/asp-operator/test/monitor.test.mjs services/asp-operator/test/operator.test.mjs services/asp-operator/test/pools.test.mjs services/asp-operator/test/poolsproperties.test.mjs services/asp-operator/test/preflight.test.mjs services/asp-operator/test/recovery.test.mjs services/asp-operator/test/scheduler.test.mjs services/asp-operator/test/secp256k1.test.mjs services/asp-operator/test/service.test.mjs services/asp-operator/test/signer.test.mjs services/asp-operator/test/simulateproperties.test.mjs services/asp-operator/test/topology.test.mjs services/asp-operator/test/transaction.test.mjs services/asp-operator/test/txmanager.test.mjs services/asp-operator/test/vaultstate.test.mjs services/asp-operator/test/vaultvectors.test.mjs services/asp-operator/test/wire.test.mjs services/asp-operator/test/wiring.test.mjs
+PASS  python3 scripts/check_reference_not_deployed.py --selftest
+PASS  python3 scripts/check_reference_not_deployed.py
+PASS  python3 scripts/check_asp_golden_provenance.py --selftest
+PASS  python3 scripts/check_asp_golden_provenance.py
+PASS  python3 scripts/check_asp_deployment_config.py --selftest
+PASS  python3 scripts/check_asp_deployment_config.py
+PASS  python3 scripts/check_asp_deployment_config.py --require-answered
+PASS  python3 scripts/check_asp_pool_registry.py --selftest
+PASS  python3 scripts/check_asp_pool_registry.py
+PASS  python3 scripts/check_asp_intake_parity.py --selftest
+PASS  python3 scripts/check_asp_intake_parity.py
+PASS  python3 scripts/generate_pool_table.py --selftest
+PASS  python3 scripts/generate_pool_table.py --check
+PASS  python3 scripts/check_asp_register_contract_drift.py --selftest
+PASS  python3 scripts/check_asp_register_contract_drift.py
+PASS  python3 scripts/check_asp_decision_dag.py --selftest
+PASS  python3 scripts/check_asp_decision_dag.py
+PASS  python3 scripts/check_asp_units_and_time.py --selftest
+PASS  python3 scripts/check_asp_units_and_time.py
+PASS  python3 scripts/check_testnet_chain_evidence.py --selftest
+PASS  python3 scripts/check_testnet_chain_evidence.py
+PASS  python3 scripts/check_asp_node_surface.py --selftest
+PASS  python3 scripts/check_asp_node_surface.py
+PASS  python3 scripts/check_asp_txmanager_policy.py --selftest
+PASS  python3 scripts/check_asp_txmanager_policy.py
+PASS  python3 scripts/check_asp_preflight_guards.py --selftest
+PASS  python3 scripts/check_asp_preflight_guards.py
+PASS  python3 scripts/check_asp_settlement_guard_order.py --selftest
+PASS  python3 scripts/check_asp_settlement_guard_order.py
+PASS  python3 scripts/generate_asp_client_refusals.py --selftest
+PASS  python3 scripts/generate_asp_client_refusals.py --check
+PASS  python3 scripts/check_asp_client_guard_order.py --selftest
+PASS  python3 scripts/check_asp_client_guard_order.py
+PASS  python3 scripts/check_asp_client_honesty.py --selftest
+PASS  python3 scripts/check_asp_client_honesty.py
+PASS  node --test services/asp-client/test/assurance.test.mjs services/asp-client/test/mutation.test.mjs services/asp-client/test/preconditions.test.mjs services/asp-client/test/properties.test.mjs services/asp-client/test/refusals.test.mjs services/asp-client/test/screens.test.mjs services/asp-client/test/signatures.test.mjs services/asp-client/test/vectors.test.mjs services/asp-client/test/view.test.mjs
+PASS  python3 scripts/check_venue_engine_differential.py --selftest
+PASS  python3 scripts/check_venue_engine_differential.py --allow-unbuilt
+PASS  python3 scripts/asp_e2e_offline.py --check
+PASS  python3 scripts/check_asp_e2e.py --selftest
+PASS  python3 scripts/check_asp_e2e.py
+PASS  python3 scripts/check_battery_skip_census.py --selftest
+PASS  python3 scripts/check_battery_skip_census.py
+PASS  python3 scripts/check_asp_register_reconciliation.py --selftest
+PASS  python3 scripts/check_asp_register_reconciliation.py
+PASS  python3 scripts/check_asp_feed_vectors.py --selftest
+PASS  python3 scripts/check_asp_feed_vectors.py
+PASS  python3 scripts/check_asp_feed_vectors.py --mutation-gate
+PASS  bash scripts/install_foundry.sh --check
+PASS  python3 scripts/asp_local_loop.py --selftest
+PASS  python3 scripts/asp_local_loop.py run
+PASS  python3 scripts/check_falsification_checklist.py --selftest
+PASS  python3 scripts/check_falsification_checklist.py
+PASS  python3 scripts/check_asp_gas_measured.py --selftest
+PASS  python3 scripts/check_asp_gas_measured.py
+PASS  python3 scripts/check_asp_campaign_counts.py --selftest
+PASS  python3 scripts/check_asp_campaign_counts.py
+PASS  python3 scripts/check_coverage.py --selftest
+PASS  python3 scripts/check_coverage.py
+PASS  python3 scripts/check_parameter_thresholds.py --selftest
+PASS  python3 scripts/check_parameter_thresholds.py
+PASS  python3 scripts/check_test_fixture_params.py --selftest
+PASS  python3 scripts/check_test_fixture_params.py
+PASS  python3 scripts/audit_networks.py
+FAIL  python3 scripts/asp_address_book.py
+      ADDRESS BOOK CHECK FAILED
+       - 31337.json ASPVault@0x93C7a6D00849c44Ef3E92E95DCEFfccd447909Ae: creation-code hash 0x65eece20318b005eef47f24f3cb182609ba95c97eca52d76313c1f7354553682 is not the golden 0xd3059d7a68c1e6791086f7ace95abfd2ab98578936cf847e98749f792cfd70b5; this address holds a different build
+PASS  python3 scripts/check_foundry_pin.py
+PASS  python3 scripts/verify_deployment.py --selftest
+PASS  python3 scripts/check_mathlib_cache.py --selftest
+PASS  python3 scripts/check_mathlib_cache.py
+SKIP  python3 scripts/check_asp_encoding_generated.py (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/check_asp_vector_staleness.py --selftest (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/check_asp_vector_staleness.py (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/check_venue_engine_differential.py (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/check_asp_decision_dag.py --verify-export (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/generate_roadmap_evidence.py --check (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/check_gate_negative.py (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/check_detsim_tiers.py (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+SKIP  python3 scripts/audit_lean_comment_references.py --selftest (needs a built tree; run `lake build` then scripts/run_checks.sh --post-build)
+----
+source-only battery: 226 checks run, build-dependent checks skipped

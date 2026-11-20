@@ -1,0 +1,24 @@
+-- Found 0 errors in 54 declarations (plus 7 automatically generated ones) in RequestProject.ASP.Phase7.Transitions with 3 linters
+
+
+-- All linting checks passed!
+-- Found 0 errors in 42 declarations (plus 172 automatically generated ones) in RequestProject.ASP.Phase7.Frame with 3 linters
+
+
+-- All linting checks passed!
+-- Found 0 errors in 29 declarations (plus 35 automatically generated ones) in RequestProject.ASP.Phase4.ABI with 3 linters
+
+
+-- All linting checks passed!
+-- Found 0 errors in 177 declarations (plus 452 automatically generated ones) in RequestProject.Fame.Rotation.Machine with 3 linters
+
+
+-- All linting checks passed!
+-- Found 0 errors in 61 declarations (plus 164 automatically generated ones) in RequestProject.Fame.Operator.Chain with 3 linters
+
+
+-- All linting checks passed!
+-- Found 0 errors in 17 declarations (plus 2 automatically generated ones) in RequestProject.Util.ListFold with 3 linters
+
+
+-- All linting checks passed!
